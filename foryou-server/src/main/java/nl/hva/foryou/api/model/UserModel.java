@@ -3,8 +3,6 @@ package nl.hva.foryou.api.model;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import java.time.ZonedDateTime;
-
 @Relation(collectionRelation = "_content")
 public class UserModel extends RepresentationModel<UserModel> {
 
@@ -21,8 +19,6 @@ public class UserModel extends RepresentationModel<UserModel> {
     private String phone;
 
     private String password;
-
-    private ZonedDateTime creationDate;
 
     public String getFirstName() {
         return firstName;
@@ -80,11 +76,4 @@ public class UserModel extends RepresentationModel<UserModel> {
         this.password = password;
     }
 
-    public ZonedDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(ZonedDateTime creationDate) {
-        this.creationDate = creationDate;
-    }
 }
