@@ -1,14 +1,12 @@
-package nl.hva.foryou.presistence.domain;
+package nl.hva.foryou.api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToOne;
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
-@Entity
-public class UserAddress extends BaseJpaEntity {
+@Relation(collectionRelation = "_content")
+public class UserAddressModel extends RepresentationModel<UserAddressModel> {
 
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
-    private User user;
+    private Long userId;
 
     private String street;
 
@@ -20,12 +18,12 @@ public class UserAddress extends BaseJpaEntity {
 
     private String city;
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getStreet() {
