@@ -1,6 +1,6 @@
 package nl.hva.foryou.api.converter;
 
-import nl.hva.foryou.api.controller.UserAddressController;
+import nl.hva.foryou.api.controller.UserController;
 import nl.hva.foryou.api.model.UserAddressModel;
 import nl.hva.foryou.presistence.domain.UserAddress;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
@@ -8,7 +8,7 @@ import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSuppor
 public class UserAddressConverter extends RepresentationModelAssemblerSupport<UserAddress, UserAddressModel> {
 
     public UserAddressConverter() {
-        super(UserAddressController.class, UserAddressModel.class);
+        super(UserController.class, UserAddressModel.class);
     }
 
     @Override
@@ -21,5 +21,15 @@ public class UserAddressConverter extends RepresentationModelAssemblerSupport<Us
         model.setPostalCode(entity.getPostalCode());
         model.setCity(entity.getCity());
         return model;
+    }
+
+    public UserAddress toEntity(UserAddressModel model) {
+        UserAddress entity = new UserAddress();
+        entity.setStreet(model.getStreet());
+        entity.setHouseNumber(model.getHouseNumber());
+        entity.setHouseNumberSuffix(model.getHouseNumberSuffix());
+        entity.setPostalCode(model.getPostalCode());
+        entity.setCity(model.getCity());
+        return entity;
     }
 }
