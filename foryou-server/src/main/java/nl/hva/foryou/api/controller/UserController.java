@@ -4,9 +4,11 @@ import nl.hva.foryou.api.converter.UserAddressConverter;
 import nl.hva.foryou.api.converter.UserConverter;
 import nl.hva.foryou.api.model.UserAddressModel;
 import nl.hva.foryou.api.model.UserModel;
+import nl.hva.foryou.api.model.UserSignInModel;
 import nl.hva.foryou.exception.DuplicateAddressException;
 import nl.hva.foryou.exception.EmailAlreadyExistsException;
 import nl.hva.foryou.exception.InvalidEmailException;
+import nl.hva.foryou.exception.UserAuthenticationException;
 import nl.hva.foryou.presistence.domain.User;
 import nl.hva.foryou.presistence.domain.UserAddress;
 import nl.hva.foryou.service.UserService;
@@ -35,7 +37,6 @@ public class UserController {
     @PostMapping()
     public ResponseEntity<User> createAccount(@RequestBody UserModel userModel) {
         User user = userConverter.toEntity(userModel);
-
         if (userService.findUserByEmail(userModel.getEmail()) != null) {
             throw new EmailAlreadyExistsException("Email address already exists");
         }
@@ -56,6 +57,19 @@ public class UserController {
         userAddress.setUser(user);
         UserAddress createdAddress = userService.saveUserAddress(userAddress);
         return ResponseEntity.status(HttpStatus.CREATED).body(userAddressConverter.toModel(createdAddress));
+    }
+
+    @PostMapping("signIn")
+    public ResponseEntity<String> signIn(@RequestBody UserSignInModel userSignInModel) {
+        try {
+            User user = userService.findUserByEmail(userSignInModel.getEmail());
+            if (user == null || !user.getPassword().equals(userSignInModel.getPassword())) {
+                throw new UserAuthenticationException("Invalid email or password");
+            }
+            return ResponseEntity.ok("Logged in successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+        }
     }
 
 }
