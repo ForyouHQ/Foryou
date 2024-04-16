@@ -1,0 +1,17 @@
+/**
+    Galaxy Fold
+ */
+@media screen and (width: 280px) and (height: 653px) {
+    .container {
+        display: none;
+    }
+}
+
+/**
+    Rules till 640px H
+ */
+@media screen and (max-height: 640px) {
+    .container {
+        display: none;
+    }
+}

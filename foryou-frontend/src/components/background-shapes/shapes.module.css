@@ -1,0 +1,683 @@
+.rightRectangle {
+    width: 30%;
+    float: right;
+    pointer-events: none;
+}
+
+.bottomRectangle {
+    width: 30%;
+    position: fixed;
+    padding-left: 50rem;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.leftRectangle {
+    display: none;
+    pointer-events: none;
+}
+
+.topLeftRectangle {
+    width: 30%;
+    top: 0;
+    pointer-events: none;
+}
+
+/**
+   Iphone SE
+ */
+@media screen and (width: 375px) and (height: 667px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+   Iphone XR
+ */
+@media screen and (width: 414px) and (height: 896px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+   Iphone 12 Pro
+ */
+@media screen and (width: 390px) and (height: 844px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+   Iphone 14 Pro Max
+ */
+@media screen and (width: 430px) and (height: 932px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+   Pixel 7
+ */
+@media screen and (width: 412px) and (height: 915px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+   Samsung Galaxy S8
+ */
+@media screen and (width: 360px) and (height: 740px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+   IPad Mini
+ */
+@media screen and (width: 768px) and (height: 1024px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 30%;
+    }
+
+    .leftRectangle {
+        padding-top: 25rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 15rem;
+        width: 50%;
+    }
+
+    .rightRectangle {
+        padding-top: 15rem;
+        width: 40%;
+    }
+}
+
+/**
+   IPad Air
+ */
+@media screen and (width: 820px) and (height: 1180px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 30%;
+    }
+
+    .leftRectangle {
+        padding-top: 25rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 15rem;
+        width: 50%;
+    }
+
+    .rightRectangle {
+        padding-top: 15rem;
+        width: 40%;
+    }
+}
+
+/**
+   IPad Pro
+ */
+@media screen and (width: 1024px) and (height: 1366px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 30%;
+    }
+
+    .leftRectangle {
+        padding-top: 25rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 15rem;
+        width: 50%;
+    }
+
+    .rightRectangle {
+        padding-top: 15rem;
+        width: 40%;
+    }
+}
+
+/**
+   Surface Pro 7
+ */
+@media screen and (width: 912px) and (height: 1368px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 30%;
+    }
+
+    .leftRectangle {
+        padding-top: 25rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 15rem;
+        width: 50%;
+    }
+
+    .rightRectangle {
+        padding-top: 15rem;
+        width: 40%;
+    }
+}
+
+/**
+   Surface Duo
+ */
+@media screen and (width: 540px) and (height: 720px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 30%;
+    }
+
+    .leftRectangle {
+        padding-top: 18rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 15rem;
+        width: 50%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+        width: 40%;
+    }
+}
+
+/**
+   Galaxy Fold
+ */
+@media screen and (width: 280px) and (height: 653px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+   Asus Zenbook Fold
+ */
+@media screen and (width: 853px) and (height: 1280px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 30%;
+    }
+
+    .leftRectangle {
+        padding-top: 30rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 15rem;
+        width: 50%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+        width: 40%;
+    }
+}
+
+/**
+   Samsung Galaxy A51/71
+ */
+@media screen and (width: 412px) and (height: 914px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 25rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 6rem;
+        width: 65%;
+    }
+
+    .rightRectangle {
+        padding-top: 15rem;
+    }
+}
+
+/**
+   IPad Air
+ */
+@media screen and (width: 820px) and (height: 1180px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 30%;
+    }
+
+    .leftRectangle {
+        padding-top: 25rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 15rem;
+        width: 50%;
+    }
+
+    .rightRectangle {
+        padding-top: 15rem;
+        width: 40%;
+    }
+}
+
+/**
+   Nest Hub
+ */
+@media screen and (width: 1024px) and (height: 600px) {
+    .topLeftRectangle, .rightRectangle {
+        width: 25%;
+    }
+
+    .rightRectangle {
+        padding-top: 5rem;
+    }
+
+    .bottomRectangle {
+        width: 40%;
+        padding-left: 30rem;
+    }
+
+    .leftRectangle {
+        width: 15%;
+        padding-top: 20rem;
+        position: fixed;
+        display: block;
+    }
+}
+
+/**
+   Nest Hub Max
+ */
+@media screen and (width: 1280px) and (height: 800px) {
+    .topLeftRectangle, .rightRectangle {
+        width: 25%;
+    }
+
+    .rightRectangle {
+        padding-top: 5rem;
+    }
+
+    .bottomRectangle {
+        width: 40%;
+        padding-left: 30rem;
+    }
+
+    .leftRectangle {
+        width: 15%;
+        padding-top: 25rem;
+        position: fixed;
+        display: block;
+    }
+}
+
+/**
+  Galaxy Note 20 Ultra Android 11
+ */
+@media screen and (width: 412px) and (height: 883px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+  Galaxy S10/S10+ Android 11
+ */
+@media screen and (width: 360px) and (height: 760px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+  Galaxy S20 Android 11
+ */
+@media screen and (width: 360px) and (height: 800px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+  Galaxy S20 Ultra Android 11
+ */
+@media screen and (width: 412px) and (height: 915px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+  Galaxy S20+ Android 11
+ */
+@media screen and (width: 384px) and (height: 854px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+   IPad IPadOS 14.7.1
+ */
+@media screen and (width: 810px) and (height: 1080px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 30%;
+    }
+
+    .leftRectangle {
+        padding-top: 25rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 15rem;
+        width: 50%;
+    }
+
+    .rightRectangle {
+        padding-top: 15rem;
+        width: 40%;
+    }
+}
+
+/**
+   iPhone 11 Pro iOS 14.6
+ */
+@media screen and (width: 375px) and (height: 812px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+   iPhone 11 Pro Max iOS 14.6
+ */
+@media screen and (width: 414px) and (height: 896px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+   iPhone 12/13 Pro Max iOS 14.6
+ */
+@media screen and (width: 428px) and (height: 926px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 50%;
+    }
+
+    .leftRectangle {
+        padding-top: 15rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 4rem;
+        width: 80%;
+    }
+
+    .rightRectangle {
+        padding-top: 10rem;
+    }
+}
+
+/**
+   Kindle Fire HDX Linux
+ */
+@media screen and (width: 800px) and (height: 1280px) {
+    .topLeftRectangle, .rightRectangle, .leftRectangle {
+        width: 30%;
+    }
+
+    .leftRectangle {
+        padding-top: 25rem;
+        position: fixed;
+        display: block;
+    }
+
+    .bottomRectangle {
+        padding-left: 15rem;
+        width: 50%;
+    }
+
+    .rightRectangle {
+        padding-top: 15rem;
+        width: 40%;
+    }
+}
