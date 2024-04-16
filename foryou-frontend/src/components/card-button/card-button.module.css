@@ -1,0 +1,56 @@
+@import "../../constants/colors.module.css";
+
+.container {
+    padding-top: 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    background-color: var(--TurquoiseBackground);
+    color: white;
+    border-radius: 1.438rem;
+    font-weight: bold;
+    font-size: 0.938rem;
+    width: 15rem;
+    height: 3.5rem;
+    border: 0.063rem solid #ccc;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #008080;
+}
+
+.button:active {
+    background-color: #008080;
+}
+
+.button:disabled {
+    background-color: #e0e0e0;
+    color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+.button:hover:disabled {
+    background-color: #e0e0e0;
+}
+
+/**
+    Galaxy Fold
+ */
+@media screen and (width: 280px) and (height: 653px) {
+    .button {
+        background-color: var(--TurquoiseBackground);
+        color: white;
+        border-radius: 1.438rem;
+        font-weight: bold;
+        font-size: 0.938rem;
+        width: 15rem;
+        height: 2rem;
+        border: 0.063rem solid #ccc;
+        transition: background-color 0.3s ease;
+    }
+}

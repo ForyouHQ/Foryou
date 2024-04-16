@@ -1,0 +1,19 @@
+.container {
+    padding-top: 1rem;
+    display: flex;
+}
+
+.signIn {
+    display: inline-block;
+    padding-left: 0.3rem;
+}
+
+.signInLink {
+    text-decoration: underline;
+    cursor: pointer;
+    color: black;
+}
+
+.signInLink:hover {
+    color: black;
+}
