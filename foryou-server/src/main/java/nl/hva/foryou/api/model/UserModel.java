@@ -12,8 +12,6 @@ public class UserModel extends RepresentationModel<UserModel> {
 
     private String lastName;
 
-    private String gender;
-
     private String email;
 
     private String phone;
@@ -42,14 +40,6 @@ public class UserModel extends RepresentationModel<UserModel> {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getEmail() {

@@ -2,8 +2,6 @@ package nl.hva.foryou.presistence.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -20,10 +18,6 @@ public class User extends BaseJpaEntity {
 
     @NotBlank
     private String lastName;
-
-    @Enumerated(EnumType.STRING)
-    @NotNull
-    private Gender gender = Gender.OTHER;
 
     @Column(unique = true)
     @Email
@@ -59,14 +53,6 @@ public class User extends BaseJpaEntity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
     }
 
     public String getEmail() {
