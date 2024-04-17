@@ -1,0 +1,67 @@
+@import "../../constants/colors.module.css";
+
+.navbar {
+    background-color: var(--NavBarBackgroundColor);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1.25rem;
+    position: relative;
+    z-index: 1000;
+    height: 2.688rem;
+    box-shadow: 0 0.625rem 0.9375rem rgba(0, 0, 0, 0.1);
+}
+
+.navbarNav {
+    display: flex;
+    list-style: none;
+}
+
+.buttonContainer {
+    position: absolute;
+    top: 50%;
+    right: 1.25rem;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 0.625rem;
+}
+
+.btn {
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 0.063rem solid black;
+    box-shadow: 0 0 0 0 black;
+    width: 5.313rem;
+    height: 2.188rem;
+}
+
+.btn:hover {
+    transform: translateY(-0.25rem) translateX(-0.125rem);
+    box-shadow: 0.125rem 0.313rem 0 0 black;
+}
+
+.btn:active {
+    transform: translateY(0.125rem) translateX(0.063rem);
+    box-shadow: 0 0 0 0 black;
+}
+
+.btnSignin {
+    color: var(--ButtonColor);
+    border-color: var(--ButtonColor);
+    background-color: transparent;
+}
+
+.btnRegister {
+    color: var(--NavBarBackgroundColor);
+    background-color: var(--ButtonColor);
+    border-color: var(--ButtonColor);
+}
+
+.logo {
+    max-width: 100%;
+    height: 100%;
+}
