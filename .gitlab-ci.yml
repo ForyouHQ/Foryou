@@ -7,26 +7,20 @@ mirror_to_github:
   script:
   - git clone https://oauth2:$MOHANED_TOKEN@gitlab.fdmci.hva.nl/se-specialization-2023-2/projects-tse1/ewamon/foryou
   - cd foryou
-
-  - mkdir github_workflow_repo
-  - cd github_workflow_repo
+    
   - git init
-  - git remote add origin https://github.com/ForyouHQ/Foryou.git
-
-  - git fetch origin main
-  - git checkout main
-  - rsync -av --exclude='.git' --exclude='.github' --delete --progress ../github_workflow_repo/. ../
-  - cd ..
+  - git remote add github https://github.com/ForyouHQ/Foryou.git
+  - git fetch github main:.github/workflows/main
+  - git fetch github develop:.github/workflows/main
 
   - git remote set-url --push origin https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git
+
   - git checkout main || git checkout -b main
   - git pull origin main
   - git push --force origin main
-
   - git checkout develop || git checkout -b develop
   - git pull origin develop
   - git push --force origin develop
-
   - git push --mirror
   only:
     - main
