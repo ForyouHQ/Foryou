@@ -8,10 +8,7 @@ mirror_to_github:
   - git clone https://oauth2:$MOHANED_TOKEN@gitlab.fdmci.hva.nl/se-specialization-2023-2/projects-tse1/ewamon/foryou
   - cd foryou
     
-  - git clone https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git .github
-  - ls -la  # List files in the current directory
-  - ls -la .github  # List files in the .github directory
-  - ls -la .github/workflows  # List files in the .github/workflows directory
+  - cp -r https://github.com/ForyouHQ/Foryou/tree/main/.github/workflows .github/
 
   - git remote set-url --push origin https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git
 
