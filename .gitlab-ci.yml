@@ -8,19 +8,16 @@ mirror_to_github:
   - git clone https://oauth2:$MOHANED_TOKEN@gitlab.fdmci.hva.nl/se-specialization-2023-2/projects-tse1/ewamon/foryou
   - cd foryou
 
+  - git clone https://github.com/ForyouHQ/Foryou.git github_repo
+  - cp -r github_repo/.github/workflows .github/
+
   - git remote set-url --push origin https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git
   - git checkout main || git checkout -b main
   - git pull origin main
-  - curl -L https://github.com/ForyouHQ/Foryou/tarball/main --output repo.tar.gz
-  - tar -xzf repo.tar.gz
-  - mv ForyouHQ-Foryou-*/.github/workflows .github/
   - git push --force origin main
 
   - git checkout develop || git checkout -b develop
   - git pull origin develop
-  - curl -L https://github.com/ForyouHQ/Foryou/tarball/develop --output repo.tar.gz
-  - tar -xzf repo.tar.gz
-  - mv ForyouHQ-Foryou-*/.github/workflows .github/
   - git push --force origin develop
 
   - git push --mirror
