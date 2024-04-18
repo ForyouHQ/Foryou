@@ -3,6 +3,7 @@ stages:
 
 mirror_to_github:
   stage: mirror
+  image: maven:3-eclipse-temurin-17
   script:
     - git clone https://gitlab.fdmci.hva.nl/se-specialization-2023-2/projects-tse1/ewamon/foryou
     - cd foryou
