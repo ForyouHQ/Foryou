@@ -1,0 +1,7 @@
+@import "../../constants/colors.module.css";
+
+.container {
+    background-repeat: repeat;
+    background-color: var(--TurquoiseBackground);
+    height: 100vh;
+}

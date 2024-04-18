@@ -1,10 +1,16 @@
 import React from 'react';
 import css from './register-input.module.css';
-import { CardButton } from "../card-button/card-button";
-import { SignInText } from "../sign-in-text/sign-in-text";
+import {CardButton} from "../card-button/card-button";
+import {SignInText} from "../sign-in-text/sign-in-text";
+import {Link} from "react-router-dom";
 
-export const RegisterInput: React.FC<{ showSecondComponent: boolean, setShowSecondComponent: (value: boolean) => void }> = ({ showSecondComponent, setShowSecondComponent }) => {
-
+export const RegisterInput: React.FC<{
+    showSecondComponent: boolean,
+    setShowSecondComponent: (value: boolean) => void }> =
+    ({
+         showSecondComponent,
+         setShowSecondComponent
+    }) => {
     const firstRegisterComponent = () => {
         return (
             <div className={css.container}>
@@ -79,7 +85,9 @@ export const RegisterInput: React.FC<{ showSecondComponent: boolean, setShowSeco
         <div className={css.container}>
             {showSecondComponent ? secondRegisterComponent() : firstRegisterComponent()}
             <div className={css.signInText}>
-                <SignInText/>
+                <Link to={"/login"}>
+                    <SignInText firstText={"Already Have An Account?"} secondText={""}/>
+                </Link>
             </div>
         </div>
     );
