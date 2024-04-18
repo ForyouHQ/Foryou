@@ -10,8 +10,8 @@ mirror_to_github:
     
   - git init
   - git remote add github https://github.com/ForyouHQ/Foryou.git
-  - git fetch github main:.github/workflows
-  - git fetch github develop:.github/workflows
+  - git fetch github main:.github/workflows --depth=1
+  - git fetch github develop:.github/workflows --depth=1
 
   - git remote set-url --push origin https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git
 
