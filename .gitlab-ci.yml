@@ -14,7 +14,7 @@ mirror_to_github:
   - git push origin develop
   - git push --mirror
   only:
-    - main 
+    - main
     - develop
   tags:
-    - mohaned
+    - hva
