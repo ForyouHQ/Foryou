@@ -5,10 +5,10 @@ mirror_to_github:
   stage: mirror
   image: maven:3-eclipse-temurin-17
   script:
-    - git clone https://gitlab.fdmci.hva.nl/se-specialization-2023-2/projects-tse1/ewamon/foryou
-    - cd foryou
-    - git remote set-url --push origin https://github.com/ForyouHQ/Foryou.git
-    - git push --mirror
+  - git clone https://oauth2:$MOHANED_TOKEN@gitlab.fdmci.hva.nl/se-specialization-2023-2/projects-tse1/ewamon/foryou
+  - cd foryou
+  - git remote set-url --push origin https://github.com/ForyouHQ/Foryou.git
+  - git push --mirror
   only:
     - main 
     - develop
