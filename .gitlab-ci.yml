@@ -9,6 +9,9 @@ mirror_to_github:
   - cd foryou
     
   - git clone https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git .github
+  - ls -la  # List files in the current directory
+  - ls -la .github  # List files in the .github directory
+  - ls -la .github/workflows  # List files in the .github/workflows directory
 
   - git remote set-url --push origin https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git
 
