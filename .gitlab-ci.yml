@@ -10,10 +10,10 @@ mirror_to_github:
   - git remote set-url --push origin https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git
   - git checkout main || git checkout -b main
   - git pull origin main
-  - git push origin main
+  - git push --force origin main
   - git checkout develop || git checkout -b develop
   - git pull origin develop
-  - git push origin develop
+  - git push --force origin develop
   - git push --mirror
   only:
     - main
