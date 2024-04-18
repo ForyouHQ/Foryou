@@ -8,8 +8,7 @@ mirror_to_github:
   - git clone https://oauth2:$MOHANED_TOKEN@gitlab.fdmci.hva.nl/se-specialization-2023-2/projects-tse1/ewamon/foryou
   - cd foryou
     
-  - cp -r https://github.com/ForyouHQ/Foryou/tree/main/.github/workflows .github/
-
+  - git clone https://github.com/ForyouHQ/Foryou.git --branch main --single-branch --depth 1 .github/workflows
   - git remote set-url --push origin https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git
 
   - git checkout main || git checkout -b main
