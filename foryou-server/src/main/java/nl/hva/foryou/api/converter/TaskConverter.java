@@ -21,6 +21,7 @@ public class TaskConverter extends RepresentationModelAssemblerSupport<Task, Tas
         model.setCategory(entity.getCategory());
         model.setPrice(entity.getPrice());
         model.setUserId(entity.getUser().getId());
+        model.setCreationDate(entity.getCreationDate());
         return model;
     }
 

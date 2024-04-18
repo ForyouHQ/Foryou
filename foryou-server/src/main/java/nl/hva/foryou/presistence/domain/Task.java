@@ -27,6 +27,7 @@ public class Task extends BaseJpaEntity{
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
+    @NotNull
     private User user;
 
     public User getUser() {

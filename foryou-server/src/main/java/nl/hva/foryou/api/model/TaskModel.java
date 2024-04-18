@@ -5,6 +5,7 @@ import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 
 @Relation(collectionRelation = "_content")
 public class TaskModel extends RepresentationModel<TaskModel> {
@@ -18,6 +19,8 @@ public class TaskModel extends RepresentationModel<TaskModel> {
     private TaskCategory category;
 
     private Long userId;
+
+    private ZonedDateTime creationDate;
 
     public String getTitle() {
         return title;
@@ -57,5 +60,13 @@ public class TaskModel extends RepresentationModel<TaskModel> {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public ZonedDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(ZonedDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 }
