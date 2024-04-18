@@ -9,6 +9,7 @@ mirror_to_github:
   - cd foryou
   - git remote set-url --push origin https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git
   - git push --mirror
+  - git push origin develop
   only:
     - main 
     - develop
