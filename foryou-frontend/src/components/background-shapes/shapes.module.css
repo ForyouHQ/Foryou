@@ -10,6 +10,7 @@
     padding-left: 50rem;
     bottom: 0;
     pointer-events: none;
+    z-index: -1;
 }
 
 .leftRectangle {
@@ -33,7 +34,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -57,7 +58,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -81,7 +82,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -105,7 +106,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -129,7 +130,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -153,7 +154,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -177,32 +178,7 @@
 
     .leftRectangle {
         padding-top: 25rem;
-        position: fixed;
-        display: block;
-    }
-
-    .bottomRectangle {
-        padding-left: 15rem;
-        width: 50%;
-    }
-
-    .rightRectangle {
-        padding-top: 15rem;
-        width: 40%;
-    }
-}
-
-/**
-   IPad Air
- */
-@media screen and (width: 820px) and (height: 1180px) {
-    .topLeftRectangle, .rightRectangle, .leftRectangle {
-        width: 30%;
-    }
-
-    .leftRectangle {
-        padding-top: 25rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -227,7 +203,7 @@
 
     .leftRectangle {
         padding-top: 25rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -252,7 +228,7 @@
 
     .leftRectangle {
         padding-top: 25rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -277,7 +253,7 @@
 
     .leftRectangle {
         padding-top: 18rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -302,7 +278,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -326,7 +302,7 @@
 
     .leftRectangle {
         padding-top: 30rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -351,7 +327,7 @@
 
     .leftRectangle {
         padding-top: 25rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -375,7 +351,7 @@
 
     .leftRectangle {
         padding-top: 25rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -409,8 +385,8 @@
 
     .leftRectangle {
         width: 15%;
-        padding-top: 20rem;
-        position: fixed;
+        padding-top: 17rem;
+        position: absolute;
         display: block;
     }
 }
@@ -435,7 +411,7 @@
     .leftRectangle {
         width: 15%;
         padding-top: 25rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 }
@@ -450,7 +426,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -474,7 +450,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -498,7 +474,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -522,7 +498,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -546,7 +522,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -570,7 +546,7 @@
 
     .leftRectangle {
         padding-top: 25rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -595,7 +571,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -619,7 +595,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -643,7 +619,7 @@
 
     .leftRectangle {
         padding-top: 15rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
@@ -667,7 +643,7 @@
 
     .leftRectangle {
         padding-top: 25rem;
-        position: fixed;
+        position: absolute;
         display: block;
     }
 
