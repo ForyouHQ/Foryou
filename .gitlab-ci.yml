@@ -8,10 +8,7 @@ mirror_to_github:
   - git clone https://oauth2:$MOHANED_TOKEN@gitlab.fdmci.hva.nl/se-specialization-2023-2/projects-tse1/ewamon/foryou
   - cd foryou
     
-  - git init
-  - git remote add github https://github.com/ForyouHQ/Foryou.git
-  - git fetch github main:.github/workflows --depth=1
-  - git fetch github develop:.github/workflows --depth=1
+  - git clone https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git .github
 
   - git remote set-url --push origin https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git
 
