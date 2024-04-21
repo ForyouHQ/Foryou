@@ -5,20 +5,14 @@ import nl.hva.foryou.api.converter.UserConverter;
 import nl.hva.foryou.api.model.UserAddressModel;
 import nl.hva.foryou.api.model.UserModel;
 import nl.hva.foryou.api.model.UserSignInModel;
-import nl.hva.foryou.exception.DuplicateAddressException;
-import nl.hva.foryou.exception.EmailAlreadyExistsException;
-import nl.hva.foryou.exception.InvalidEmailException;
-import nl.hva.foryou.exception.UserAuthenticationException;
+import nl.hva.foryou.exception.*;
 import nl.hva.foryou.presistence.domain.User;
 import nl.hva.foryou.presistence.domain.UserAddress;
 import nl.hva.foryou.service.UserService;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/users", produces = MediaTypes.HAL_JSON_VALUE)
@@ -70,6 +64,15 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
+    }
+
+    @GetMapping(path = "/address/{userId}")
+    public ResponseEntity<UserAddressModel> getUserAddress(@PathVariable Long userId) {
+        UserAddress userAddress = userService.findUserAddressByUserId(userId);
+        if (userAddress == null) {
+            throw new UserNotFoundException(userId);
+        }
+        return ResponseEntity.ok(userAddressConverter.toModel(userAddress));
     }
 
 }
