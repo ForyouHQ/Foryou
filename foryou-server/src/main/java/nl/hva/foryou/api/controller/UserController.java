@@ -2,10 +2,7 @@ package nl.hva.foryou.api.controller;
 
 import nl.hva.foryou.api.converter.UserAddressConverter;
 import nl.hva.foryou.api.converter.UserConverter;
-import nl.hva.foryou.api.model.AuthenticationResponse;
-import nl.hva.foryou.api.model.UserAddressModel;
-import nl.hva.foryou.api.model.UserModel;
-import nl.hva.foryou.api.model.UserSignInModel;
+import nl.hva.foryou.api.model.*;
 import nl.hva.foryou.api.auth.JwtService;
 import nl.hva.foryou.exception.DuplicateAddressException;
 import nl.hva.foryou.exception.EmailAlreadyExistsException;
@@ -75,12 +72,17 @@ public class UserController {
         }
     }
 
-    @GetMapping(path = "/address/{userId}")
-    public ResponseEntity<UserAddressModel> getUserAddress(@PathVariable Long userId) {
+    @GetMapping(path = "/contactInfo/{userId}")
+    public ResponseEntity<ContactInfoModel> getUserAddress(@PathVariable Long userId) {
         UserAddress userAddress = userService.findUserAddressByUserId(userId);
         if (userAddress == null) {
             throw new UserNotFoundException(userId);
         }
-        return ResponseEntity.ok(userAddressConverter.toModel(userAddress));
+        ContactInfoModel contactInfoModel = new ContactInfoModel();
+        contactInfoModel.setAddress(userAddressConverter.toModel(userAddress));
+        contactInfoModel.setPhone(userService.findUserPhoneByUserId(userId));
+        contactInfoModel.setEmail(userService.findUserEmailByUserId(userId));
+
+        return ResponseEntity.ok(contactInfoModel);
     }
 }

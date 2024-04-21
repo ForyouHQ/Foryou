@@ -45,6 +45,14 @@ public class UserService {
         return userAddressRepository.findByUserId(userId);
     }
 
+    public String findUserEmailByUserId(Long userId) {
+        return userRepository.findEmailById(userId);
+    }
+
+    public String findUserPhoneByUserId(Long userId) {
+        return userRepository.findPhoneById(userId);
+    }
+
     @Transactional
     public UserAddress saveUserAddress(UserAddress userAddress) {
         return userAddressRepository.save(userAddress);
