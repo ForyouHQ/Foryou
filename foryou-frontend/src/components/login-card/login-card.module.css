@@ -17,8 +17,6 @@
     background-color: var(--CardBackgroundColor);
 }
 
-
-
 /* For small devices (phones) */
 @media only screen and (max-width: 600px) {
     .container {
