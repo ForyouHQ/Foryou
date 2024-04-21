@@ -73,15 +73,19 @@ public class UserController {
     }
 
     @GetMapping(path = "/contactInfo/{userId}")
-    public ResponseEntity<ContactInfoModel> getUserAddress(@PathVariable Long userId) {
+    public ResponseEntity<ContactInfoModel> getUserContactInfo(@PathVariable Long userId) {
         UserAddress userAddress = userService.findUserAddressByUserId(userId);
         if (userAddress == null) {
             throw new UserNotFoundException(userId);
         }
+        User user = userService.findUserById(userId);
+        if (user == null) {
+            throw new UserNotFoundException(userId);
+        }
         ContactInfoModel contactInfoModel = new ContactInfoModel();
         contactInfoModel.setAddress(userAddressConverter.toModel(userAddress));
-        contactInfoModel.setPhone(userService.findUserPhoneByUserId(userId));
-        contactInfoModel.setEmail(userService.findUserEmailByUserId(userId));
+        contactInfoModel.setPhone(user.getPhone());
+        contactInfoModel.setEmail(user.getEmail());
 
         return ResponseEntity.ok(contactInfoModel);
     }
