@@ -13,11 +13,17 @@ mirror_to_github:
   - git fetch gitlab main
   - git checkout main
   - git pull gitlab main
+
+  - git fetch github main
+  - git merge github/main
+
   - git push github main
 
   - git fetch gitlab develop
   - git checkout develop
   - git pull gitlab develop
+  - git fetch github develop
+  - git merge github/develop
   - git push github develop
   only:
     - main
