@@ -16,7 +16,7 @@ export const TaskUploadCard: React.FC = () => {
         houseNumber: '',
         postalCode: '',
         city: '',
-        userId: 5,
+        userId: Number(localStorage.getItem("userId"))
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -54,11 +54,7 @@ export const TaskUploadCard: React.FC = () => {
         if (!token) throw new Error('JWT token not found.');
 
         try {
-            const response = await axios.get(API_URL, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            const response = await axios.get(API_URL);
             const contactInfo = response.data;
             setFormData({
                 ...formData,
