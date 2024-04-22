@@ -17,10 +17,12 @@ jobs:
 
       - name: Read project key and organization
         run: |
-          PROJECT_KEY=$(grep -Po '^sonar.projectKey=\K.*' sonar-project.properties)
-          ORGANIZATION=$(grep -Po '^sonar.organization=\K.*' sonar-project.properties)
+          PROJECT_KEY=$(grep -Po '^sonar.projectKey=\K.*' Foryou/sonar-project.properties)
+          ORGANIZATION=$(grep -Po '^sonar.organization=\K.*' Foryou/sonar-project.properties)
           echo "Project Key: $PROJECT_KEY"
           echo "Organization: $ORGANIZATION"
+          echo "::set-env name=PROJECT_KEY::$PROJECT_KEY"
+          echo "::set-env name=ORGANIZATION::$ORGANIZATION"
           
       - name: Set up Node.js
         uses: actions/setup-node@master
@@ -69,10 +71,12 @@ jobs:
 
       - name: Read project key and organization
         run: |
-          PROJECT_KEY=$(grep -Po '^sonar.projectKey=\K.*' sonar-project.properties)
-          ORGANIZATION=$(grep -Po '^sonar.organization=\K.*' sonar-project.properties)
+          PROJECT_KEY=$(grep -Po '^sonar.projectKey=\K.*' Foryou/sonar-project.properties)
+          ORGANIZATION=$(grep -Po '^sonar.organization=\K.*' Foryou/sonar-project.properties)
           echo "Project Key: $PROJECT_KEY"
           echo "Organization: $ORGANIZATION"
+          echo "::set-env name=PROJECT_KEY::$PROJECT_KEY"
+          echo "::set-env name=ORGANIZATION::$ORGANIZATION"
 
       - name: Set up JDK
         uses: actions/setup-java@v3
