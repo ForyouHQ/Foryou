@@ -11,7 +11,7 @@ export const DashboardServices: React.FC = () => {
                 <div className={css.details}>
                     <div className={css.container}>
                         <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>$15,00</span>
+                        <span className={css.price}>€15,00</span>
                     </div>
                     <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
                     <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
@@ -23,7 +23,7 @@ export const DashboardServices: React.FC = () => {
                 <div className={css.details}>
                     <div className={css.container}>
                         <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>$15,00</span>
+                        <span className={css.price}>€15,00</span>
                     </div>
                     <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
                     <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
@@ -35,7 +35,7 @@ export const DashboardServices: React.FC = () => {
                 <div className={css.details}>
                     <div className={css.container}>
                         <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>$15,00</span>
+                        <span className={css.price}>€15,00</span>
                     </div>
                     <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
                     <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
@@ -47,7 +47,7 @@ export const DashboardServices: React.FC = () => {
                 <div className={css.details}>
                     <div className={css.container}>
                         <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>$15,00</span>
+                        <span className={css.price}>€15,00</span>
                     </div>
                     <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
                     <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
@@ -59,7 +59,7 @@ export const DashboardServices: React.FC = () => {
                 <div className={css.details}>
                     <div className={css.container}>
                         <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>$15,00</span>
+                        <span className={css.price}>€15,00</span>
                     </div>
                     <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
                     <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
@@ -71,7 +71,7 @@ export const DashboardServices: React.FC = () => {
                 <div className={css.details}>
                     <div className={css.container}>
                         <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>$15,00</span>
+                        <span className={css.price}>€15,00</span>
                     </div>
                     <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
                     <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
@@ -83,7 +83,7 @@ export const DashboardServices: React.FC = () => {
                 <div className={css.details}>
                     <div className={css.container}>
                         <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>$15,00</span>
+                        <span className={css.price}>€15,00</span>
                     </div>
                     <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
                     <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
@@ -95,7 +95,7 @@ export const DashboardServices: React.FC = () => {
                 <div className={css.details}>
                     <div className={css.container}>
                         <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>$15,00</span>
+                        <span className={css.price}>€15,00</span>
                     </div>
                     <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
                     <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
@@ -107,7 +107,7 @@ export const DashboardServices: React.FC = () => {
                 <div className={css.details}>
                     <div className={css.container}>
                         <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>$15,00</span>
+                        <span className={css.price}>€15,00</span>
                     </div>
                     <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
                     <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
@@ -119,7 +119,7 @@ export const DashboardServices: React.FC = () => {
                 <div className={css.details}>
                     <div className={css.container}>
                         <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>$15,00</span>
+                        <span className={css.price}>€15,00</span>
                     </div>
                     <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
                     <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
