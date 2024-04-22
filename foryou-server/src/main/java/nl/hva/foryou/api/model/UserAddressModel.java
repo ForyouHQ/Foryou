@@ -1,5 +1,7 @@
 package nl.hva.foryou.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.hateoas.Links;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
@@ -64,5 +66,11 @@ public class UserAddressModel extends RepresentationModel<UserAddressModel> {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    @JsonIgnore
+    @Override
+    public Links getLinks() {
+        return super.getLinks();
     }
 }

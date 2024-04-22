@@ -19,9 +19,15 @@ export const LoginCard: React.FC = () => {
             const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({email, password}),
             });
-            return await response.json();
+
+            const data = await response.json();
+            const jwt = data.token;
+            const userId = data.userId
+            localStorage.setItem('token', jwt);
+            localStorage.setItem('userId', userId);
+            // return await response.json();
         } catch (error) {
             console.error('Error:', error);
         } finally {
