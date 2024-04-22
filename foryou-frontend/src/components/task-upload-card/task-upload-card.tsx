@@ -7,7 +7,7 @@ import axios from 'axios';
 export const TaskUploadCard: React.FC = () => {
     const [showSecondComponent, setShowSecondComponent] = useState(false);
     const [formData, setFormData] = useState({
-        category: '',
+        category: 'OTHER',
         title: '',
         price: '',
         description: '',
@@ -16,7 +16,7 @@ export const TaskUploadCard: React.FC = () => {
         houseNumber: '',
         postalCode: '',
         city: '',
-        userId: 1,
+        userId: 5,
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -30,21 +30,35 @@ export const TaskUploadCard: React.FC = () => {
     const createTask = async () => {
         const API_URL = process.env.REACT_APP_TASK_UPLOAD_API_URL;
         if (!API_URL) throw new Error('REACT_APP_API_URL is not defined. Please set the environment variable.');
+
+        const token = localStorage.getItem('token');
+        if (!token) throw new Error('JWT token not found.');
+
         try {
-            const response = await axios.post(API_URL, formData);
+            const response = await axios.post(API_URL, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             console.log('Task created successfully:', response.data);
-            // Handle success (e.g., show a success message to the user)
         } catch (error) {
             console.error('Error creating task:', error);
-            // Handle error (e.g., show an error message to the user)
         }
     };
 
     const fetchUserContactInfo = async (userId: number) => {
         const API_URL = `${process.env.REACT_APP_GET_CONTACT_INFO_API_URL}/${userId}`;
         if (!API_URL) throw new Error('REACT_APP_API_URL is not defined. Please set the environment variable.');
+
+        const token = localStorage.getItem('token');
+        if (!token) throw new Error('JWT token not found.');
+
         try {
-            const response = await axios.get(API_URL);
+            const response = await axios.get(API_URL, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             const contactInfo = response.data;
             setFormData({
                 ...formData,
@@ -56,7 +70,6 @@ export const TaskUploadCard: React.FC = () => {
             });
         } catch (error) {
             console.error('Error fetching user contact info:', error);
-            // Handle error (e.g., show an error message to the user)
         }
     };
 

@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
 @Entity
-public class Task extends BaseJpaEntity{
+public class Task extends BaseJpaEntity {
 
     @NotBlank
     private String title;
@@ -17,6 +17,7 @@ public class Task extends BaseJpaEntity{
     private String description;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private TaskCategory category;
 
     @NotNull

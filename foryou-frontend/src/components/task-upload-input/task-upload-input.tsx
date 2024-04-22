@@ -43,9 +43,10 @@ export const TaskUploadInput: React.FC<TaskUploadInputProps> = ({
                         value={formData.category}
                         onChange={handleInputChange}
                     >
-                        <option value="Task1">Task 1</option>
-                        <option value="Task2">Task 2</option>
-                        <option value="Task3">Task 3</option>
+                        <option value="TASK1">Task 1</option>
+                        <option value="TASK2">Task 2</option>
+                        <option value="TASK3">Task 3</option>
+                        <option value="OTHER">Other</option>
                     </select>
                 </div>
 
