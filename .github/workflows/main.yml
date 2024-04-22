@@ -15,15 +15,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Read project key and organization
-        run: |
-          PROJECT_KEY=$(grep -Po '^sonar.projectKey=\K.*' Foryou/sonar-project.properties)
-          ORGANIZATION=$(grep -Po '^sonar.organization=\K.*' Foryou/sonar-project.properties)
-          echo "Project Key: $PROJECT_KEY"
-          echo "Organization: $ORGANIZATION"
-          echo "::set-env name=PROJECT_KEY::$PROJECT_KEY"
-          echo "::set-env name=ORGANIZATION::$ORGANIZATION"
-          
       - name: Set up Node.js
         uses: actions/setup-node@master
         with:
@@ -53,8 +44,8 @@ jobs:
         with:
           projectBaseDir: foryou-frontend
           args: >
-            -Dsonar.projectKey=$PROJECT_KEY
-            -Dsonar.organization=$ORGANIZATION
+            -Dsonar.projectKey=ForyouHQ_Foryou
+            -Dsonar.organization=foryouhq
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -64,29 +55,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
-      - name: Read project key and organization
-        run: |
-          PROJECT_KEY=$(grep -Po '^sonar.projectKey=\K.*' Foryou/sonar-project.properties)
-          ORGANIZATION=$(grep -Po '^sonar.organization=\K.*' Foryou/sonar-project.properties)
-          echo "Project Key: $PROJECT_KEY"
-          echo "Organization: $ORGANIZATION"
-          echo "::set-env name=PROJECT_KEY::$PROJECT_KEY"
-          echo "::set-env name=ORGANIZATION::$ORGANIZATION"
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'adopt'
 
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'adopt'
-
-      - name: Build and analyze
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=$PROJECT_KEY
-        env:
+    - name: Build and analyze
+      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ForyouHQ_Foryou
+      working-directory: foryou-server
+	      env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        working-directory: foryou-server
+      
