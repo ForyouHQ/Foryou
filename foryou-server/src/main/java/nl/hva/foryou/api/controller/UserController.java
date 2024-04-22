@@ -42,11 +42,11 @@ public class UserController {
         User user = userConverter.toEntity(userModel);
         if (userService.findUserByEmail(userModel.getEmail()) != null) throw new EmailAlreadyExistsException("Email address already exists");
         if (!userService.isValidEmail(userModel.getEmail())) throw new InvalidEmailException("Invalid email address");
-        userService.saveUser(user);
+        user = userService.saveUser(user);
         String jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.
-                builder()
+        return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .userId(user.getId())
                 .build();
     }
 
@@ -66,7 +66,10 @@ public class UserController {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userSignInModel.getEmail(), userSignInModel.getPassword()));
             User user = userService.findUserByEmail(userSignInModel.getEmail());
             String jwtToken = jwtService.generateToken(user);
-            return ResponseEntity.ok(AuthenticationResponse.builder().token(jwtToken).build());
+            return ResponseEntity.ok(AuthenticationResponse.builder()
+                            .token(jwtToken)
+                            .userId(user.getId())
+                            .build());
         } catch (AuthenticationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
         }
