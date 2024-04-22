@@ -67,9 +67,9 @@ jobs:
           distribution: 'adopt'
 
       - name: Build and analyze
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ForyouHQ_Foryou
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ForyouHQ_Foryou
         working-directory: foryou-server
         continue-on-error: true
