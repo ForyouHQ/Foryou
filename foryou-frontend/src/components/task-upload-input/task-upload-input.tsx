@@ -1,81 +1,48 @@
 import React from 'react';
 import css from './task-upload-input.module.css';
-import {CardButton} from "../card-button/card-button";
+import { CardButton } from '../card-button/card-button';
 
 interface TaskUploadInputProps {
-    setCategory: React.Dispatch<React.SetStateAction<string>>;
-    setTitle: React.Dispatch<React.SetStateAction<string>>;
-    setPrice: React.Dispatch<React.SetStateAction<number>>;
-    setDescription: React.Dispatch<React.SetStateAction<string>>;
-    setPhoneNumber: React.Dispatch<React.SetStateAction<string>>;
-    setStreet: React.Dispatch<React.SetStateAction<string>>;
-    setHouseNumber: React.Dispatch<React.SetStateAction<string>>;
-    setPostcode: React.Dispatch<React.SetStateAction<string>>;
-    setCity: React.Dispatch<React.SetStateAction<string>>,
-    setUserId: React.Dispatch<React.SetStateAction<number>>,
-    onClick?: () => void,
-    showSecondComponent: boolean,
-    setShowSecondComponent: (value: boolean) => void,
+    showSecondComponent: boolean;
+    setShowSecondComponent: (value: boolean) => void;
+    formData: {
+        category: string;
+        title: string;
+        price: string;
+        description: string;
+        phoneNumber: string;
+        street: string;
+        houseNumber: string;
+        postalCode: string;
+        city: string;
+    };
+    handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+    onNextButtonClick: () => void;
+    onCreateTask: () => void;
 }
 
 export const TaskUploadInput: React.FC<TaskUploadInputProps> = ({
-                                                                    setCategory,
-                                                                    setTitle,
-                                                                    setPrice,
-                                                                    setDescription,
-                                                                    setPhoneNumber,
-                                                                    setStreet,
-                                                                    setHouseNumber,
-                                                                    setPostcode,
-                                                                    setCity,
                                                                     showSecondComponent,
                                                                     setShowSecondComponent,
-                                                                    onClick
+                                                                    formData,
+                                                                    handleInputChange,
+                                                                    onNextButtonClick,
+                                                                    onCreateTask
                                                                 }) => {
-
-    const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCategory(event.target.value);
-    };
-
-    const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTitle(event.target.value);
-    };
-
-    const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPrice(Number(event.target.value));
-    };
-
-    const handleDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setDescription(event.target.value);
-    };
-
-    const handlePhoneNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPhoneNumber(event.target.value);
-    };
-
-    const handleStreetChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setStreet(event.target.value);
-    };
-
-    const handleHouseNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setHouseNumber(event.target.value);
-    };
-
-    const handlePostcodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPostcode(event.target.value);
-    };
-
-    const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCity(event.target.value);
-    };
-
-
     const firstTaskUploadComponent = () => {
         return (
             <div className={css.container}>
                 <div className={css.labelInputContainer}>
-                    <label htmlFor="Category" className={css.label}>Category</label>
-                    <select id="Category" className={css.selectInput}>
+                    <label htmlFor="category" className={css.label}>
+                        Category
+                    </label>
+                    <select
+                        id="category"
+                        name="category"
+                        className={css.selectInput}
+                        value={formData.category}
+                        onChange={handleInputChange}
+                    >
                         <option value="Task1">Task 1</option>
                         <option value="Task2">Task 2</option>
                         <option value="Task3">Task 3</option>
@@ -83,68 +50,133 @@ export const TaskUploadInput: React.FC<TaskUploadInputProps> = ({
                 </div>
 
                 <div className={css.labelInputContainer}>
-                    <label htmlFor="title" className={css.label}>Title</label>
-                    <input id="title" type="text" className={css.regularInput} onChange={handleTitleChange}/>
+                    <label htmlFor="title" className={css.label}>
+                        Title
+                    </label>
+                    <input
+                        id="title"
+                        name="title"
+                        type="text"
+                        className={css.regularInput}
+                        value={formData.title}
+                        onChange={handleInputChange}
+                    />
                 </div>
 
                 <div className={css.labelInputContainer}>
-                    <label htmlFor="price" className={css.label}>Price</label>
-                    <input id="price" type="text" className={css.regularInput} onChange={handlePriceChange}/>
+                    <label htmlFor="price" className={css.label}>
+                        Price
+                    </label>
+                    <input
+                        id="price"
+                        name="price"
+                        type="text"
+                        className={css.regularInput}
+                        value={formData.price}
+                        onChange={handleInputChange}
+                    />
                 </div>
 
                 <div className={css.labelInputContainer}>
-                    <label htmlFor="description" className={css.label}>Description</label>
-                    <textarea id="description" className={css.textareaInput} onChange={handleDescriptionChange}/>
+                    <label htmlFor="description" className={css.label}>
+                        Description
+                    </label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        className={css.textareaInput}
+                        value={formData.description}
+                        onChange={handleInputChange}
+                    />
                 </div>
-                <CardButton text={"Next"} inactive={false} onClick={() => setShowSecondComponent(true)}/>
+                <CardButton text={'Next'} inactive={false} onClick={onNextButtonClick} />
             </div>
         );
-    }
+    };
 
     const secondTaskUploadComponent = () => {
         return (
-
             <div className={css.container}>
                 <div className={css.labelInputContainer}>
-                    <label htmlFor="phoneNumber" className={css.label}>Phone Number</label>
-                    <input id="phoneNumber" type="text" className={css.regularInput}
-                           onChange={handlePhoneNumberChange}/>
+                    <label htmlFor="phoneNumber" className={css.label}>
+                        Phone Number
+                    </label>
+                    <input
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        type="text"
+                        className={css.regularInput}
+                        value={formData.phoneNumber}
+                        onChange={handleInputChange}
+                    />
                 </div>
 
                 <div className={css.nameContainers}>
                     <div className={css.labelInputContainer}>
-                        <label htmlFor="street" className={css.label}>Street</label>
-                        <input id="street" type="text" className={css.nameInput} onChange={handleStreetChange}/>
+                        <label htmlFor="street" className={css.label}>
+                            Street
+                        </label>
+                        <input
+                            id="street"
+                            name="street"
+                            type="text"
+                            className={css.nameInput}
+                            value={formData.street}
+                            onChange={handleInputChange}
+                        />
                     </div>
 
                     <div className={css.labelInputContainer}>
-                        <label htmlFor="houseNumber" className={css.label}>House Number</label>
-                        <input id="houseNumber" type="text" className={css.nameInput}
-                               onChange={handleHouseNumberChange}/>
+                        <label htmlFor="houseNumber" className={css.label}>
+                            House Number
+                        </label>
+                        <input
+                            id="houseNumber"
+                            name="houseNumber"
+                            type="text"
+                            className={css.nameInput}
+                            value={formData.houseNumber}
+                            onChange={handleInputChange}
+                        />
                     </div>
                 </div>
 
                 <div className={css.nameContainers}>
                     <div className={css.labelInputContainer}>
-                        <label htmlFor="postcode" className={css.label}>Postcode</label>
-                        <input id="postcode" type="text" className={css.nameInput} onChange={handlePostcodeChange}/>
+                        <label htmlFor="postcode" className={css.label}>
+                            Postcode
+                        </label>
+                        <input
+                            id="postcode"
+                            name="postcode"
+                            type="text"
+                            className={css.nameInput}
+                            value={formData.postalCode}
+                            onChange={handleInputChange}
+                        />
                     </div>
 
                     <div className={css.labelInputContainer}>
-                        <label htmlFor="city" className={css.label}>City</label>
-                        <input id="city" type="text" className={css.nameInput} onChange={handleCityChange}/>
+                        <label htmlFor="city" className={css.label}>
+                            City
+                        </label>
+                        <input
+                            id="city"
+                            name="city"
+                            type="text"
+                            className={css.nameInput}
+                            value={formData.city}
+                            onChange={handleInputChange}
+                        />
                     </div>
                 </div>
 
-                <CardButton text={"Create Service"} inactive={true} onClick={onClick}/>
+                <CardButton text={'Create Service'} inactive={false} onClick={onCreateTask} />
             </div>
-
         );
-    }
+    };
 
     return (
-        <div className={css.container}>
-            {showSecondComponent ? secondTaskUploadComponent() : firstTaskUploadComponent()}
-        </div>
+        <div className={css.container}>{showSecondComponent ? secondTaskUploadComponent() : firstTaskUploadComponent()}</div>
     );
 };

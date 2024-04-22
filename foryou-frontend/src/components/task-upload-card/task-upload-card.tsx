@@ -1,67 +1,87 @@
 import React, {useState} from 'react';
 import css from './task-upload-card.module.css';
-import {CardHeader} from "../card-header/card-header";
-import {TaskUploadInput} from "../task-upload-input/task-upload-input";
+import {CardHeader} from '../card-header/card-header';
+import {TaskUploadInput} from '../task-upload-input/task-upload-input';
+import axios from 'axios';
 
 export const TaskUploadCard: React.FC = () => {
     const [showSecondComponent, setShowSecondComponent] = useState(false);
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState<number>(0);
-    const [userId, setUserId] = useState<number>(5);
-    const [category, setCategory] = useState<string>("");
-    const [phoneNumber, setPhoneNumber] = useState<string>("");
-    const [street, setStreet] = useState<string>("");
-    const [houseNumber, setHouseNumber] = useState<string>("");
-    const [postcode, setPostcode] = useState<string>("");
-    const [city, setCity] = useState<string>("");
+    const [formData, setFormData] = useState({
+        category: '',
+        title: '',
+        price: '',
+        description: '',
+        phoneNumber: '',
+        street: '',
+        houseNumber: '',
+        postalCode: '',
+        city: '',
+        userId: 1,
+    });
 
-    const containerStyle = {
-        height: showSecondComponent ? '70%' : '80%',
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const {name, value} = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
     };
 
-    const uploadTask = async () => {
+    const createTask = async () => {
+        const API_URL = process.env.REACT_APP_TASK_UPLOAD_API_URL;
+        if (!API_URL) throw new Error('REACT_APP_API_URL is not defined. Please set the environment variable.');
         try {
-            const api_url = process.env.REACT_APP_TASK_UPLOAD;
-
-            if (!api_url) {
-                throw new Error('API URL not set');
-            }
-            const response = await fetch(api_url, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({title, description, price, userId,})
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json();
-            console.log(data);
+            const response = await axios.post(API_URL, formData);
+            console.log('Task created successfully:', response.data);
+            // Handle success (e.g., show a success message to the user)
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error creating task:', error);
+            // Handle error (e.g., show an error message to the user)
         }
+    };
 
-    }
+    const fetchUserContactInfo = async (userId: number) => {
+        const API_URL = `${process.env.REACT_APP_GET_CONTACT_INFO_API_URL}/${userId}`;
+        if (!API_URL) throw new Error('REACT_APP_API_URL is not defined. Please set the environment variable.');
+        try {
+            const response = await axios.get(API_URL);
+            const contactInfo = response.data;
+            setFormData({
+                ...formData,
+                phoneNumber: contactInfo.phone,
+                street: contactInfo.address.street,
+                houseNumber: contactInfo.address.houseNumber,
+                postalCode: contactInfo.address.postalCode,
+                city: contactInfo.address.city
+            });
+        } catch (error) {
+            console.error('Error fetching user contact info:', error);
+            // Handle error (e.g., show an error message to the user)
+        }
+    };
+
+    const handleNextButtonClick = () => {
+        if (!showSecondComponent) {
+            const userId = formData.userId;
+            fetchUserContactInfo(userId).then(r => console.log(r));
+        }
+        setShowSecondComponent(true);
+    };
 
     return (
-        <div className={css.container} style={containerStyle}>
+        <div className={css.container}>
             <CardHeader
-                topText={showSecondComponent ? "Contact Information" : "Create Service"}
-                bottomText={showSecondComponent ? "Lorem ipsum dolor sit amet 2" : "Lorem ipsum dolor sit amet 1"}
+                topText={showSecondComponent ? 'Contact Information' : 'Create Service'}
+                bottomText={showSecondComponent ? 'Lorem ipsum dolor sit amet 2' : 'Lorem ipsum dolor sit amet 1'}
             />
-            <TaskUploadInput showSecondComponent={showSecondComponent} setShowSecondComponent={setShowSecondComponent} setTitle={setTitle}
-                             setDescription={setDescription}
-                             setPrice={setPrice}
-                             setUserId={setUserId}
-                             setCategory={setCategory}
-                             setPhoneNumber={setPhoneNumber}
-                             setStreet={setStreet}
-                             setHouseNumber={setHouseNumber}
-                             setPostcode={setPostcode}
-                             setCity={setCity}
-                             onClick={uploadTask}/>
+            <TaskUploadInput
+                showSecondComponent={showSecondComponent}
+                setShowSecondComponent={setShowSecondComponent}
+                formData={formData}
+                handleInputChange={handleInputChange}
+                onNextButtonClick={handleNextButtonClick}
+                onCreateTask={createTask}
+            />
         </div>
     );
 };
