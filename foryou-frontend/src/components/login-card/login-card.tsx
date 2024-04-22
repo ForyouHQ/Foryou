@@ -12,10 +12,9 @@ export const LoginCard: React.FC = () => {
     const handleLogin = async () => {
         try {
             const API_URL = process.env.REACT_APP_SIGN_IN_API_URL;
-
             if (!API_URL) throw new Error('REACT_APP_API_URL is not defined. Please set the environment variable.');
-
             setIsLoading(true);
+
             const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -23,11 +22,9 @@ export const LoginCard: React.FC = () => {
             });
 
             const data = await response.json();
-            const jwt = data.token;
-            const userId = data.userId
-            localStorage.setItem('token', jwt);
-            localStorage.setItem('userId', userId);
-            // return await response.json();
+
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('userId',data.userId);
         } catch (error) {
             console.error('Error:', error);
         } finally {
