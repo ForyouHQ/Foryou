@@ -5,18 +5,20 @@ mirror_to_github:
   stage: mirror
   image: maven:3-eclipse-temurin-17
   script:
+  - git config --global user.email "contactforyouhq@gmail.com"
+  - git config --global user.name "ForyouHQ"
+
   - git clone https://oauth2:$MOHANED_TOKEN@gitlab.fdmci.hva.nl/se-specialization-2023-2/projects-tse1/ewamon/foryou
   - cd foryou
+
   - git remote rename origin gitlab
   - git remote add github https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git
 
   - git fetch gitlab main
   - git checkout main
   - git pull gitlab main
-
   - git fetch github main
   - git merge github/main
-
   - git push github main
 
   - git fetch gitlab develop
