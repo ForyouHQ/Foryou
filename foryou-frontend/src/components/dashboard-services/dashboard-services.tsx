@@ -13,19 +13,118 @@ export const DashboardServices: React.FC = () => {
                         <span className={css.tag}>Dieren</span>
                         <span className={css.price}>$15,00</span>
                     </div>
-                    <b className={css.title}>Kan iemand mijn hond uitlaten?</b>
+                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
                     <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
                 </div>
             </div>
-            {/*<div className={css.card}>*/}
-            {/*    <img src={stockImage} alt="Service Image" className={css.image} />*/}
-            {/*    <div className={css.details}>*/}
-            {/*        <span className={css.tag}>Development</span>*/}
-            {/*        <span className={css.price}>$129</span>*/}
-            {/*        <h2 className={css.title}>Another Service Title</h2>*/}
-            {/*        <button className={css.button}>Bekijk advertentie</button>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+
+            <div className={css.card}>
+                <img src={stockImage} alt="Service Image" className={css.image} />
+                <div className={css.details}>
+                    <div className={css.container}>
+                        <span className={css.tag}>Dieren</span>
+                        <span className={css.price}>$15,00</span>
+                    </div>
+                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
+                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
+                </div>
+            </div>
+
+            <div className={css.card}>
+                <img src={stockImage} alt="Service Image" className={css.image} />
+                <div className={css.details}>
+                    <div className={css.container}>
+                        <span className={css.tag}>Dieren</span>
+                        <span className={css.price}>$15,00</span>
+                    </div>
+                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
+                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
+                </div>
+            </div>
+
+            <div className={css.card}>
+                <img src={stockImage} alt="Service Image" className={css.image} />
+                <div className={css.details}>
+                    <div className={css.container}>
+                        <span className={css.tag}>Dieren</span>
+                        <span className={css.price}>$15,00</span>
+                    </div>
+                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
+                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
+                </div>
+            </div>
+
+            <div className={css.card}>
+                <img src={stockImage} alt="Service Image" className={css.image} />
+                <div className={css.details}>
+                    <div className={css.container}>
+                        <span className={css.tag}>Dieren</span>
+                        <span className={css.price}>$15,00</span>
+                    </div>
+                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
+                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
+                </div>
+            </div>
+
+            <div className={css.card}>
+                <img src={stockImage} alt="Service Image" className={css.image} />
+                <div className={css.details}>
+                    <div className={css.container}>
+                        <span className={css.tag}>Dieren</span>
+                        <span className={css.price}>$15,00</span>
+                    </div>
+                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
+                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
+                </div>
+            </div>
+
+            <div className={css.card}>
+                <img src={stockImage} alt="Service Image" className={css.image} />
+                <div className={css.details}>
+                    <div className={css.container}>
+                        <span className={css.tag}>Dieren</span>
+                        <span className={css.price}>$15,00</span>
+                    </div>
+                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
+                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
+                </div>
+            </div>
+
+            <div className={css.card}>
+                <img src={stockImage} alt="Service Image" className={css.image} />
+                <div className={css.details}>
+                    <div className={css.container}>
+                        <span className={css.tag}>Dieren</span>
+                        <span className={css.price}>$15,00</span>
+                    </div>
+                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
+                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
+                </div>
+            </div>
+
+            <div className={css.card}>
+                <img src={stockImage} alt="Service Image" className={css.image} />
+                <div className={css.details}>
+                    <div className={css.container}>
+                        <span className={css.tag}>Dieren</span>
+                        <span className={css.price}>$15,00</span>
+                    </div>
+                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
+                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
+                </div>
+            </div>
+
+            <div className={css.card}>
+                <img src={stockImage} alt="Service Image" className={css.image} />
+                <div className={css.details}>
+                    <div className={css.container}>
+                        <span className={css.tag}>Dieren</span>
+                        <span className={css.price}>$15,00</span>
+                    </div>
+                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
+                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
+                </div>
+            </div>
         </div>
     );
 };
