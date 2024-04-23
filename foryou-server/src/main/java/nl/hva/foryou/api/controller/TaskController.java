@@ -19,6 +19,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping(path = "/tasks", produces = MediaTypes.HAL_JSON_VALUE)
@@ -53,5 +55,10 @@ public class TaskController {
     public ResponseEntity<PagedModel<TaskSummaryModel>> getAllTasks(Pageable pageable, PagedResourcesAssembler<TaskSummary> assembler) {
         Page<TaskSummary> tasks = taskService.getAllTasks(pageable);
         return ResponseEntity.ok(assembler.toModel(tasks, taskSummaryConverter));
+    }
+
+    @GetMapping("/categories")
+    public ResponseEntity<List<String>> getAllTaskCategories() {
+        return ResponseEntity.ok().body(taskService.getAllTaskCategories());
     }
 }
