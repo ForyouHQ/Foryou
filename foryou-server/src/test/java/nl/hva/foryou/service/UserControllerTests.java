@@ -20,7 +20,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -29,19 +28,12 @@ class UserControllerTest {
 
     @Mock
     private UserService userService;
-
-    @Mock
-    private PasswordEncoder passwordEncoder;
-
     @Mock
     private AuthenticationManager authenticationManager;
-
     @Mock
     private JwtService jwtService;
-
     @InjectMocks
     private UserController userController;
-
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
