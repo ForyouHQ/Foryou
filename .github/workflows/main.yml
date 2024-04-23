@@ -58,7 +58,7 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         with:
-          projectBaseDir: .
+          projectBaseDir: foryou-frontend
           args: >
             -Dsonar.organization=foryouhq
             -Dsonar.projectKey=foryouhq_Foryou
