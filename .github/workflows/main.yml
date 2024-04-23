@@ -5,11 +5,28 @@ on:
       - main
       - develop
 jobs:
-  sonarcloud_frontend:
-    name: SonarCloud Analysis - Frontend
+  sonarcloud_scan:
+    name: SonarCloud Analysis - Backend
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Build and analyze
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ForyouHQ_Foryou
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        working-directory: foryou-server
+        
+      - name: Checkout code - frontend
         uses: actions/checkout@v2
       - name: Set up Node.js
         uses: actions/setup-node@master
@@ -40,23 +57,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  sonarcloud_backend:
-    name: SonarCloud Analysis - Backend
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'adopt'
-
-      - name: Build and analyze
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ForyouHQ_Foryou
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        working-directory: foryou-server
