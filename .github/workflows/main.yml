@@ -50,7 +50,7 @@ jobs:
         with:
           projectBaseDir: foryou-frontend
           args: >
-            -Dsonar.projectKey=ForyouHQ_Foryou
+            -Dsonar.projectKey=foryouhq_Foryou
             -Dsonar.organization=foryouhq
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
