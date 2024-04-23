@@ -26,8 +26,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         working-directory: foryou-server
         
-      - name: Checkout code - frontend
-        uses: actions/checkout@v2
       - name: Set up Node.js
         uses: actions/setup-node@master
         with:
