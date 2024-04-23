@@ -1,6 +1,7 @@
-package nl.hva.foryou.service;
+package nl.hva.foryou.service.task;
 
 import jakarta.transaction.Transactional;
+import nl.hva.foryou.api.model.TaskSummaryModel;
 import nl.hva.foryou.exception.TaskNotFoundException;
 import nl.hva.foryou.presistence.domain.Task;
 import nl.hva.foryou.presistence.domain.TaskCategory;
@@ -18,7 +19,6 @@ import java.util.List;
 public class TaskService {
 
     private final TaskRepository taskRepository;
-
 
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
@@ -40,4 +40,10 @@ public class TaskService {
     public List<String> getAllTaskCategories() {
         return Arrays.stream(TaskCategory.values()).map(TaskCategory::name).toList();
     }
+
+    public Page<Task> filterTasks(TasksQuery query, Pageable pageable) {
+        return taskRepository.findAll(TaskSpecifications.querySpecification(query), pageable);
+
+    }
+
 }

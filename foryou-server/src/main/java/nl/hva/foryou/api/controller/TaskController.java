@@ -1,5 +1,6 @@
 package nl.hva.foryou.api.controller;
 
+import jakarta.validation.Valid;
 import nl.hva.foryou.api.converter.TaskConverter;
 import nl.hva.foryou.api.converter.TaskSummaryConverter;
 import nl.hva.foryou.api.model.TaskModel;
@@ -8,10 +9,13 @@ import nl.hva.foryou.exception.UserNotFoundException;
 import nl.hva.foryou.presistence.domain.Task;
 import nl.hva.foryou.presistence.domain.TaskSummary;
 import nl.hva.foryou.presistence.domain.User;
-import nl.hva.foryou.service.TaskService;
+import nl.hva.foryou.service.task.TaskService;
 import nl.hva.foryou.service.UserService;
+import nl.hva.foryou.service.task.TaskSpecifications;
+import nl.hva.foryou.service.task.TasksQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.PagedModel;
@@ -60,5 +64,11 @@ public class TaskController {
     @GetMapping("/categories")
     public ResponseEntity<List<String>> getAllTaskCategories() {
         return ResponseEntity.ok().body(taskService.getAllTaskCategories());
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<PagedModel<TaskModel>> searchTasks(@RequestBody @Valid TasksQuery query, Pageable pageable, PagedResourcesAssembler<Task> assembler) {
+        Page<Task> tasks = taskService.filterTasks(query, pageable);
+        return ResponseEntity.ok(assembler.toModel(tasks, taskConverter));
     }
 }

@@ -1,5 +1,7 @@
 package nl.hva.foryou.presistence.domain;
 
+import java.math.BigDecimal;
+
 public interface TaskSummary {
     Long getId();
 
@@ -7,7 +9,7 @@ public interface TaskSummary {
 
     String getTitle();
 
-    String getPrice();
+    BigDecimal getPrice();
 
     //TODO: add task image
 }
