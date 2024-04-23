@@ -5,7 +5,7 @@ on:
       - main
       - develop
 jobs:
-  sonarcloud_analysis:
+  sonarcloud_scan:
     name: SonarCloud Analysis
     runs-on: ubuntu-latest
     steps:
@@ -17,51 +17,21 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install frontend dependencies
+      - name: Install dependencies
         run: npm install
-        working-directory: foryou-frontend
+        working-directory: foryou/foryou-frontend
 
-      - name: Set CI environment variable
-        run: echo "CI=false" >> $GITHUB_ENV
-        
-      - name: Build
-        run: |
-          npm run build
-        working-directory: foryou-frontend
-        continue-on-error: true
-
-      - name: Upload frontend coverage report
-        uses: actions/upload-artifact@v2
-        with:
-          name: frontend-coverage-report
-          path: foryou-frontend/coverage/lcov.info
+      - name: Build frontend
+        run: npm run build
+        working-directory: foryou/foryou-frontend
 
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'adopt'
 
-      - name: Build and analyze
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=foryouhq_Foryou
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        working-directory: foryou-server
-
-      - name: Upload backend coverage report
-        uses: actions/upload-artifact@v2
-        with:
-          name: backend-coverage-report
-          path: foryou-server/target/site/jacoco/jacoco.xml
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        with:
-          projectBaseDir: foryou-frontend
-          args: >
-            -Dsonar.organization=foryouhq
-            -Dsonar.projectKey=foryouhq_Foryou
+      - name: Build and analyze backend
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectBaseDir=foryou -Dsonar.projectKey=foryouhq_Foryou
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
