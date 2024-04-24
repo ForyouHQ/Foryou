@@ -56,6 +56,7 @@ build-and-push-frontend:
   stage: build-and-push-frontend
   image: docker:stable
   script:
+    - apk --no-cache add curl
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - cd foryou-frontend
     - docker build --tag $DOCKER_IMAGE_FRONTEND .
