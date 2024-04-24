@@ -4,8 +4,8 @@ stages:
   - build-and-push-frontend
 
 variables:
-  DOCKER_IMAGE_BACKEND: ForYouHQ/foryou-server:latest
-  DOCKER_IMAGE_FRONTEND: ForYouHQ/foryou-frontend:latest
+  DOCKER_IMAGE_BACKEND: ForYouHQ/foryou-server
+  DOCKER_IMAGE_FRONTEND: ForYouHQ/foryou-frontend
 
 mirror_to_github:
   stage: mirror
@@ -43,24 +43,22 @@ build-and-push-backend:
   stage: build-and-push-backend
   image: maven:3-eclipse-temurin-17
   script:
-    - docker login -u $DOCKER_USERNAME -p $GITHUB_MOHANED_TOKEN
     - cd foryou-server
     - docker build --tag $DOCKER_IMAGE_BACKEND .
     - docker push $DOCKER_IMAGE_BACKEND
   only:
     - develop
   tags:
-    - docker  
+    - hva  
 
 build-and-push-frontend:
   stage: build-and-push-frontend
   image: maven:3-eclipse-temurin-17
   script:
-    - docker login -u $DOCKER_USERNAME -p $GITHUB_MOHANED_TOKEN
     - cd foryou-frontend
     - docker build --tag $DOCKER_IMAGE_FRONTEND .
     - docker push $DOCKER_IMAGE_FRONTEND
   only:
     - develop
   tags:
-    - docker  
+    - hva  
