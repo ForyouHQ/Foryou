@@ -62,11 +62,6 @@ export const DashboardServices: React.FC = () => {
 
     return (
         <>
-            <div className={css.buttons}>
-                <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 0} className={css.buttonOne}>Previous</button>
-                <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages - 1} className={css.buttonTwo}>Next
-                </button>
-            </div>
             <div className={css.container}>
                 {tasks.map(task => (
                     <div key={task.id} className={css.card}>
@@ -81,6 +76,11 @@ export const DashboardServices: React.FC = () => {
                         </div>
                     </div>
                 ))}
+
+            </div>
+            <div className={css.buttons}>
+                <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 0} className={css.buttonOne}>Previous</button>
+                <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages - 1} className={css.buttonTwo}>Next</button>
             </div>
         </>
     );

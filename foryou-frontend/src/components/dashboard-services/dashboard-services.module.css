@@ -1,5 +1,5 @@
 .container {
-    position: absolute;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -64,8 +64,10 @@
 
 .buttons {
     display: flex;
+    align-items: center;
     justify-content: center;
-    padding-bottom: 1.4rem;
+    max-width: 80rem;
+    padding-top: 1rem;
 }
 
 .buttonOne {

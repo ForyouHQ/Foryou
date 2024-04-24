@@ -3,6 +3,12 @@
     padding-left: 25%;
 }
 
+.filterBar {
+    position: absolute;
+    top: 10%;
+}
+
+
 @media (max-width: 1125px) {
     .filterBar {
         display: none;
