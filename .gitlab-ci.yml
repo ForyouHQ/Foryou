@@ -1,7 +1,7 @@
 stages:
   - mirror
-  - build_and_push_backend
-  - build_and_push_frontend
+  - build-and-push-backend
+  - build-and-push-frontend
 
 variables:
   DOCKER_IMAGE_BACKEND: ForYouHQ/foryou-server:latest
@@ -39,8 +39,8 @@ mirror_to_github:
   tags:
     - hva
 
-build_and_push_backend:
-  stage: build_and_push_backend
+build-and-push-backend:
+  stage: build-and-push-backend
   script:
     - docker login -u $DOCKER_USERNAME -p $GITHUB_MOHANED_TOKEN
     - cd foryou-server
@@ -51,8 +51,8 @@ build_and_push_backend:
   tags:
     - hva  
 
-build_and_push_frontend:
-  stage: build_and_push_frontend
+build-and-push-frontend:
+  stage: build-and-push-frontend
   script:
     - docker login -u $DOCKER_USERNAME -p $GITHUB_MOHANED_TOKEN
     - cd foryou-frontend
