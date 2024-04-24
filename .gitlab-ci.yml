@@ -41,6 +41,7 @@ mirror_to_github:
 
 build-and-push-backend:
   stage: build-and-push-backend
+  image: maven:3-eclipse-temurin-17
   script:
     - docker login -u $DOCKER_USERNAME -p $GITHUB_MOHANED_TOKEN
     - cd foryou-server
@@ -53,6 +54,7 @@ build-and-push-backend:
 
 build-and-push-frontend:
   stage: build-and-push-frontend
+  image: maven:3-eclipse-temurin-17
   script:
     - docker login -u $DOCKER_USERNAME -p $GITHUB_MOHANED_TOKEN
     - cd foryou-frontend
