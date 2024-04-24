@@ -2,24 +2,29 @@ package nl.hva.foryou.api.model;
 
 import nl.hva.foryou.presistence.domain.TaskCategory;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
+import java.math.BigDecimal;
+
+@Relation(collectionRelation = "_content")
 public class TaskSummaryModel extends RepresentationModel<TaskSummaryModel> {
 
-    private String id;
+    private Long id;
 
     private TaskCategory category;
 
     private String title;
 
-    private String price;
+    private BigDecimal price;
 
     // TODO: Add task image
 
-    public String getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,11 +44,11 @@ public class TaskSummaryModel extends RepresentationModel<TaskSummaryModel> {
         this.title = title;
     }
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }
