@@ -14,7 +14,7 @@ public class TaskSummaryConverter extends RepresentationModelAssemblerSupport<Ta
     @Override
     public TaskSummaryModel toModel(TaskSummary entity) {
         TaskSummaryModel model = new TaskSummaryModel();
-        model.setId(entity.getId().toString());
+        model.setId(entity.getId());
         model.setCategory(entity.getCategory());
         model.setTitle(entity.getTitle());
         model.setPrice(entity.getPrice());

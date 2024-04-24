@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -29,19 +30,14 @@ class UserControllerTest {
 
     @Mock
     private UserService userService;
-
     @Mock
     private PasswordEncoder passwordEncoder;
-
     @Mock
     private AuthenticationManager authenticationManager;
-
     @Mock
     private JwtService jwtService;
-
     @InjectMocks
     private UserController userController;
-
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -59,7 +55,11 @@ class UserControllerTest {
 
         when(userService.findUserByEmail(userModel.getEmail())).thenReturn(null);
         when(userService.isValidEmail(userModel.getEmail())).thenReturn(true);
-        when(userService.saveUser(any(User.class))).thenReturn(user);
+        when(userService.saveUser(any(User.class))).thenAnswer(invocation -> {
+            User savedUser = invocation.getArgument(0);
+            savedUser.setId(1L);
+            return savedUser;
+        });
 
         String jwtToken = "dummyToken";
         when(jwtService.generateToken(any())).thenReturn(jwtToken);
@@ -68,6 +68,7 @@ class UserControllerTest {
 
         assertNotNull(response);
         assertNotNull(response.getToken());
+        assertNotNull(response.getUserId());
     }
 
 
@@ -143,6 +144,7 @@ class UserControllerTest {
         signInModel.setPassword("password");
 
         User user = new User();
+        user.setId(1L);
         user.setEmail(signInModel.getEmail());
         user.setPassword(signInModel.getPassword());
 
