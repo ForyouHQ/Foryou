@@ -1,6 +1,6 @@
 stages:
   - mirror
-  - build-and-push-backend
+  # - build-and-push-backend
   - build-and-push-frontend
 
 variables:
@@ -39,18 +39,18 @@ mirror_to_github:
   tags:
     - hva
 
-build-and-push-backend:
-  stage: build-and-push-backend
-  image: docker:stable
-  script:
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    - cd foryou-server
-    - docker build --tag $DOCKER_IMAGE_BACKEND .
-    - docker push $DOCKER_IMAGE_BACKEND
-  only:
-    - develop
-  tags:
-    - hva  
+# build-and-push-backend:
+#   stage: build-and-push-backend
+#   image: docker:stable
+#   script:
+#     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+#     - cd foryou-server
+#     - docker build --tag $DOCKER_IMAGE_BACKEND .
+#     - docker push $DOCKER_IMAGE_BACKEND
+#   only:
+#     - develop
+#   tags:
+#     - hva  
 
 build-and-push-frontend:
   stage: build-and-push-frontend
