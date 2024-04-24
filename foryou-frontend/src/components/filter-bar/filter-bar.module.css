@@ -4,16 +4,10 @@
     background-color: #01A9B4;
     border-top-left-radius: 1.25rem;
     border-bottom-left-radius: 1.25rem;
-    display: flex;
     flex-direction: column;
     padding: 1.25rem;
     margin-left: 1rem;
-}
-
-@media (max-width: 1793px) {
-    .container {
-        display: none;
-    }
+    display: flex;
 }
 
 .logo {

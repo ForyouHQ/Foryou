@@ -11,7 +11,10 @@ export const Dashboard: React.FC = () => {
             <div className={css.services}>
                 <DashboardServices/>
             </div>
-            <FilterBar/>
+
+            <div className={css.filterBar}>
+                <FilterBar/>
+            </div>
         </div>
     );
 };

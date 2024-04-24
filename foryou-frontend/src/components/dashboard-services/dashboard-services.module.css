@@ -4,22 +4,10 @@
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    max-width: 90rem;
+    max-width: 80rem;
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 33.3333%;
-}
-
-@media (max-width: 1623px) {
-    .container {
-        max-width: 62.5rem;
-    }
-}
-
-@media (max-width: 1240px) {
-    .container {
-        max-width: 30rem;
-    }
 }
 
 .card {
