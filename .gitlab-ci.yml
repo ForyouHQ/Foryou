@@ -50,7 +50,7 @@ build-and-push-backend:
   only:
     - develop
   tags:
-    - hva  
+    - docker  
 
 build-and-push-frontend:
   stage: build-and-push-frontend
@@ -63,4 +63,4 @@ build-and-push-frontend:
   only:
     - develop
   tags:
-    - hva  
+    - docker  
