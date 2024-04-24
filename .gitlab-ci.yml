@@ -37,7 +37,7 @@ mirror_to_github:
     - main
     - develop
   tags:
-    - hva
+    - docker
 
 build-and-push-backend:
   stage: build-and-push-backend
@@ -49,7 +49,7 @@ build-and-push-backend:
   only:
     - develop
   tags:
-    - hva  
+    - docker  
 
 build-and-push-frontend:
   stage: build-and-push-frontend
