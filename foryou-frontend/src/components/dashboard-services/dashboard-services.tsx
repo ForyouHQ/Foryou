@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import css from './dashboard-services.module.css';
 import stockImage from "../../assets/stock/dog_stock_image.png";
-import {ServiceButton} from "../service-button/service-button";
+import { ServiceButton } from "../service-button/service-button";
 
 interface Task {
     id: number;
@@ -26,10 +26,15 @@ interface TaskResponse {
     };
 }
 
-export const DashboardServices: React.FC = () => {
+interface DashboardServicesProps {
+    currentPage: number;
+    totalPages: number;
+    setCurrentPage: (page: number) => void;
+    setTotalPages: (total: number) => void;
+}
+
+export const DashboardServices: React.FC<DashboardServicesProps> = ({ currentPage, totalPages, setCurrentPage, setTotalPages }) => {
     const [tasks, setTasks] = useState<Task[]>([]);
-    const [currentPage, setCurrentPage] = useState<number>(0);
-    const [totalPages, setTotalPages] = useState<number>(0);
 
     useEffect(() => {
         fetchData();
@@ -42,7 +47,6 @@ export const DashboardServices: React.FC = () => {
 
             const token = localStorage.getItem('token');
             if (!token) throw new Error('JWT token not found.');
-
 
             const response = await fetch(`${API_URL}?page=${currentPage}&size=10`, {
                 method: 'GET',
@@ -76,11 +80,6 @@ export const DashboardServices: React.FC = () => {
                         </div>
                     </div>
                 ))}
-
-            </div>
-            <div className={css.buttons}>
-                <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 0} className={css.buttonOne}>Previous</button>
-                <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages - 1} className={css.buttonTwo}>Next</button>
             </div>
         </>
     );

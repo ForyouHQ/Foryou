@@ -2,12 +2,46 @@
     padding-top: 1rem;
     padding-left: 25%;
 }
-
-.filterBar {
-    position: absolute;
-    top: 10%;
+.buttons {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1rem;
 }
 
+
+.buttonOne {
+    margin-right: 1rem;
+    background-color: #01A9B4;
+    color: #fff;
+    padding: 0.938rem 1.25rem;
+    border: none;
+    border-radius: 0.313rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 6rem;
+}
+
+.buttonTwo {
+    margin-right: 1rem;
+    background-color: #01A9B4;
+    color: #fff;
+    padding: 0.938rem 1.25rem;
+    border: none;
+    border-radius: 0.313rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 6rem;
+}
+
+.buttonOne:hover {
+    background-color: #027e85;
+}
+
+.buttonTwo:hover {
+    background-color: #027e85;
+}
 
 @media (max-width: 1125px) {
     .filterBar {
@@ -19,4 +53,16 @@
         align-items: center;
         padding-left: 0;
     }
+}
+
+@media (min-width: 1126px) {
+    .buttons {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 1rem;
+        padding-left: 19rem;
+    }
+
 }
