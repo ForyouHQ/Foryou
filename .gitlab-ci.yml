@@ -60,6 +60,7 @@ build-and-push-frontend:
     - cd foryou-frontend
     - docker build --tag $DOCKER_IMAGE_FRONTEND .
     - docker push $DOCKER_IMAGE_FRONTEND
+    - curl -s $RENDER_DEPLOY_HOOK_URL_FRONTEND_TEST -o file.txt >/dev/null 2>&1
   only:
     - develop
   tags:
