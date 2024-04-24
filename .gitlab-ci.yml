@@ -4,8 +4,8 @@ stages:
   - build-and-push-frontend
 
 variables:
-  DOCKER_IMAGE_BACKEND: ForYouHQ/foryou-server
-  DOCKER_IMAGE_FRONTEND: ForYouHQ/foryou-frontend
+  DOCKER_IMAGE_BACKEND: foryouhq/foryou-server
+  DOCKER_IMAGE_FRONTEND: foryouhq/foryou-frontend
 
 mirror_to_github:
   stage: mirror
