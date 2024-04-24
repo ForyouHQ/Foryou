@@ -43,7 +43,6 @@ build-and-push-backend:
   stage: build-and-push-backend
   image: maven:3-eclipse-temurin-17
   script:
-    - sudo -u mohaned -H docker info
     - docker login -u $DOCKER_USERNAME -p $GITHUB_MOHANED_TOKEN
     - cd foryou-server
     - docker build --tag $DOCKER_IMAGE_BACKEND .
@@ -51,7 +50,7 @@ build-and-push-backend:
   only:
     - develop
   tags:
-    - mohaned  
+    - hva  
 
 build-and-push-frontend:
   stage: build-and-push-frontend
@@ -64,4 +63,4 @@ build-and-push-frontend:
   only:
     - develop
   tags:
-    - mohaned  
+    - hva  
