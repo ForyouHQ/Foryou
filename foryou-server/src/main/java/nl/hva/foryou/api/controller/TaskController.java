@@ -11,12 +11,11 @@ import nl.hva.foryou.presistence.domain.TaskSummary;
 import nl.hva.foryou.presistence.domain.User;
 import nl.hva.foryou.service.task.TaskService;
 import nl.hva.foryou.service.UserService;
-import nl.hva.foryou.service.task.TaskSpecifications;
 import nl.hva.foryou.service.task.TasksQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
@@ -37,6 +36,7 @@ public class TaskController {
     private final TaskConverter taskConverter = new TaskConverter();
 
     private final TaskSummaryConverter taskSummaryConverter = new TaskSummaryConverter();
+
 
     public TaskController(TaskService taskService, UserService userService) {
         this.taskService = taskService;
@@ -67,8 +67,13 @@ public class TaskController {
     }
 
     @PostMapping("/filter")
-    public ResponseEntity<PagedModel<TaskModel>> searchTasks(@RequestBody @Valid TasksQuery query, Pageable pageable, PagedResourcesAssembler<Task> assembler) {
+    public ResponseEntity<PagedModel<EntityModel<TaskSummaryModel>>> searchTasks(
+            @RequestBody @Valid TasksQuery query,
+            Pageable pageable,
+            PagedResourcesAssembler<TaskSummaryModel> assembler) {
+
         Page<Task> tasks = taskService.filterTasks(query, pageable);
-        return ResponseEntity.ok(assembler.toModel(tasks, taskConverter));
+        Page<TaskSummaryModel> taskSummaryModels = taskConverter.toTaskSummaryModels(tasks);
+        return ResponseEntity.ok(assembler.toModel(taskSummaryModels));
     }
 }
