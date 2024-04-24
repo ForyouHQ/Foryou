@@ -16,7 +16,7 @@ export const FilterBar: React.FC = () => {
         <div className={css.container}>
             <div className={css.logo}>
                 <img src={filterLogo} className={css.logoSpacing} alt="Filter logo"/>
-                Categories
+                Categorieën
             </div>
             <div className={css.categories}>
                 <div className={css.categoriesItem}>
