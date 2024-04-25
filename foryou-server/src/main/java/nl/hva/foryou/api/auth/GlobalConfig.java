@@ -9,7 +9,7 @@ public class GlobalConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000/", "http://foryou-frontend-test.onrender.com")
+                .allowedOrigins("http://localhost:3000/", "*.onrender.com")
                 .allowedMethods("GET", "POST", "PUT", "DELETE");
     }
 }
