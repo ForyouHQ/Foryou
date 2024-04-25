@@ -1,0 +1,62 @@
+name: SonarCloud Scan
+on:
+  push:
+    branches:
+      - main
+      - develop
+jobs:
+  sonarcloud_frontend:
+    name: SonarCloud Analysis - Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+        working-directory: foryou-frontend
+      - name: Set CI environment variable
+        run: echo "CI=false" >> $GITHUB_ENV
+      - name: Build
+        run: |
+          npm run build
+        working-directory: foryou-frontend
+        continue-on-error: true
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: coverage/lcov.info
+      - name: SonarCloud Scan - Frontend
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: foryou-frontend
+          args: >
+            -Dsonar.projectKey=foryouhq_Foryou
+            -Dsonar.organization=foryouhq
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  sonarcloud_backend:
+    name: SonarCloud Analysis - Backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Build and analyze
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=foryouhq_Foryou_backend
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        working-directory: foryou-server
