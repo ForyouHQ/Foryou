@@ -4,3 +4,9 @@ foryou-server/mvnw
 foryou-server/.mvn
 foryou-frontend/package-lock.json
 foryou-frontend/foryou-frontend.iml
+foryou-server/target/test-classes
+foryou-server/target/surefire-reports
+foryou-server/target/maven-status
+foryou-server/target/maven-archiver
+foryou-server/target/classes
+foryou-server/target/foryou-0.0.1-SNAPSHOT.jar.original
