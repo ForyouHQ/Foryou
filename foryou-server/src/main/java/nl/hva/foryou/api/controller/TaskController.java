@@ -27,7 +27,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/tasks", produces = MediaTypes.HAL_JSON_VALUE)
-@CrossOrigin(origins = "https://foryou-frontend-test.onrender.com", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}, allowedHeaders = "*")
 public class TaskController {
 
     private final TaskService taskService;
