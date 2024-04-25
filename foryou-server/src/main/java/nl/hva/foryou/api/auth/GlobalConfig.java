@@ -13,6 +13,6 @@ public class GlobalConfig implements WebMvcConfigurer {
         corsRegistry.addMapping("/**")
                 .allowedOrigins("https://foryou-frontend-test.onrender.com")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("*");
+                .allowedHeaders("*", "Access-Control-Allow-Origin");
     }
 }
