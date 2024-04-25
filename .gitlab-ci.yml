@@ -1,6 +1,6 @@
 stages:
   - mirror
-  # - build-and-push-backend-to-test
+  - build-and-push-backend-to-test
   - build-and-push-frontend-to-test
   # - build-and-push-backend-to-prod
   # - build-and-push-frontend-to-prod
@@ -41,20 +41,20 @@ mirror_to_github:
   tags:
     - hva
 
-# build-and-push-backend-to-test:
-#   stage: build-and-push-backend-to-test
-#   image: docker:stable
-#   script:
-#     - apk --no-cache add curl
-#     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-#     - cd foryou-server
-#     - docker build --tag $DOCKER_IMAGE_BACKEND .
-#     - docker push $DOCKER_IMAGE_BACKEND
-#     - curl -s $RENDER_DEPLOY_HOOK_URL_BACKEND_TEST -o file.txt >/dev/null 2>&1
-#   only:
-#     - develop
-#   tags:
-#     - hva  
+build-and-push-backend-to-test:
+  stage: build-and-push-backend-to-test
+  image: docker:stable
+  script:
+    - apk --no-cache add curl
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - cd foryou-server
+    - docker build --tag $DOCKER_IMAGE_BACKEND .
+    - docker push $DOCKER_IMAGE_BACKEND
+    - curl -s $RENDER_DEPLOY_HOOK_URL_BACKEND_TEST -o file.txt >/dev/null 2>&1
+  only:
+    - develop
+  tags:
+    - hva  
 
 build-and-push-frontend-to-test:
   stage: build-and-push-frontend-to-test
