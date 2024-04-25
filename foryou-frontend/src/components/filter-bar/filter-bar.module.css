@@ -28,6 +28,7 @@
 .categoriesItem {
     color: white;
     padding-bottom: 1.4rem;
+    cursor: pointer;
 }
 
 .filterButton {

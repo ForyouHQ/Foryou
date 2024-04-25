@@ -8,14 +8,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 export const Dashboard: React.FC = () => {
     const [currentPage, setCurrentPage] = useState<number>(0);
     const [totalPages, setTotalPages] = useState<number>(0);
+    const [filteredCategory, setFilteredCategory] = useState<string>(""); // State to hold filtered category
     const { pageNumber = '1' } = useParams<{ pageNumber?: string }>();
     const navigate = useNavigate();
 
-    // Redirect to the last page if the pageNumber is invalid
+    // Redirect to the first page if the pageNumber is invalid
     useEffect(() => {
         const parsedPageNumber = parseInt(pageNumber, 10);
         if (isNaN(parsedPageNumber) || parsedPageNumber < 1 || parsedPageNumber > totalPages) {
-            navigate(`/dashboard/page/${totalPages}`);
+            navigate(`/dashboard/page/${1}`);
             return;
         }
         setCurrentPage(parsedPageNumber - 1);
@@ -43,10 +44,10 @@ export const Dashboard: React.FC = () => {
                 <button onClick={handleNextClick} disabled={currentPage === totalPages - 1} className={css.buttonTwo}>Next</button>
             </div>
             <div className={css.services}>
-                <DashboardServices currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} setTotalPages={setTotalPages} />
+                <DashboardServices currentPage={currentPage} filteredCategory={filteredCategory} totalPages={totalPages} setCurrentPage={setCurrentPage} setTotalPages={setTotalPages}/>
             </div>
             <div className={css.filterBar}>
-                <FilterBar/>
+                <FilterBar setFilteredCategory={setFilteredCategory} setCurrentPage={setCurrentPage} setTotalPages={setTotalPages}/>
             </div>
         </div>
     );

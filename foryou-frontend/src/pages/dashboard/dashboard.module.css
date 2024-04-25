@@ -43,6 +43,16 @@
     background-color: #027e85;
 }
 
+.buttonOne:disabled {
+    background-color: #6fbfc3;
+    cursor: not-allowed;
+}
+
+.buttonTwo:disabled {
+    background-color: #6fbfc3;
+    cursor: not-allowed;
+}
+
 @media (max-width: 1125px) {
     .filterBar {
         display: none;
@@ -64,5 +74,4 @@
         padding-top: 1rem;
         padding-left: 19rem;
     }
-
 }
