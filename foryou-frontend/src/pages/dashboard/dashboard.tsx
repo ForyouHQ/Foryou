@@ -15,7 +15,7 @@ export const Dashboard: React.FC = () => {
     useEffect(() => {
         const parsedPageNumber = parseInt(pageNumber, 10);
         if (isNaN(parsedPageNumber) || parsedPageNumber < 1 || parsedPageNumber > totalPages) {
-            navigate(`/page/${totalPages}`);
+            navigate(`/dashboard/page/${totalPages}`);
             return;
         }
         setCurrentPage(parsedPageNumber - 1);
@@ -32,7 +32,7 @@ export const Dashboard: React.FC = () => {
     };
 
     const updateUrl = (page: number) => {
-        navigate(`/page/${page + 1}`);
+        navigate(`/dashboard/page/${page + 1}`);
     };
 
     return (

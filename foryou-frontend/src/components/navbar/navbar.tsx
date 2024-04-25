@@ -6,7 +6,7 @@ import logo from "../../assets/logos/logo_foryou.svg";
 const Navbar: React.FC = () => {
     return (
         <nav className={css.navbar}>
-            <NavLink to="/" className={css.logo}>
+            <NavLink to="/dashboard/page/1" className={css.logo}>
                 <img src={logo} className={css.logo} alt={"ForYou"}/>
             </NavLink>
             <ul className={css.navbarNav}>

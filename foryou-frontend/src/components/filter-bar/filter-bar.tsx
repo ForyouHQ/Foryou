@@ -61,7 +61,7 @@ export const FilterBar: React.FC = () => {
     };
 
     const reset = () => {
-        navigate(`/page/1`);
+        navigate(`/dashboard/page/1`);
     }
 
     useEffect(() => {
