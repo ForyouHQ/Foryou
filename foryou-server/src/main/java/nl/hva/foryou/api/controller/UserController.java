@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api/v1/auth", produces = MediaTypes.HAL_JSON_VALUE)
-@CrossOrigin(origins = "https://foryou-frontend-test.onrender.com")
+@CrossOrigin(origins = "https://foryou-frontend-test.onrender.com", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}, allowedHeaders = "*")
 public class UserController {
 
     private final UserService userService;
