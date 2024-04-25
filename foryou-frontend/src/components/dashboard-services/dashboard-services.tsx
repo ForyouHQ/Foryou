@@ -42,30 +42,25 @@ export const DashboardServices: React.FC<DashboardServicesProps> = ({ currentPag
 
     const fetchData = async () => {
         try {
-            const API_URL = process.env.REACT_APP_TASKS_API_URL;
+            const API_URL = process.env.REACT_APP_TASK_UPLOAD_API_URL
             if (!API_URL) throw new Error('REACT_APP_API_URL is not defined. Please set the environment variable.');
-
             const token = localStorage.getItem('token');
             if (!token) throw new Error('JWT token not found.');
-
             const response = await fetch(`${API_URL}?page=${currentPage}&size=10`, {
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
             });
-
             const data: TaskResponse = await response.json();
             setTasks(data._embedded._content);
             setTotalPages(Math.ceil(data.page.totalElements / data.page.size));
-
         } catch (error) {
             console.error('Error:', error);
         }
     };
 
     return (
-        <>
             <div className={css.container}>
                 {tasks.map(task => (
                     <div key={task.id} className={css.card}>
@@ -81,6 +76,5 @@ export const DashboardServices: React.FC<DashboardServicesProps> = ({ currentPag
                     </div>
                 ))}
             </div>
-        </>
     );
 };
