@@ -3,8 +3,10 @@ import css from './task-upload-card.module.css';
 import {CardHeader} from '../card-header/card-header';
 import {TaskUploadInput} from '../task-upload-input/task-upload-input';
 import axios from 'axios';
+import {useNavigate} from "react-router-dom";
 
 export const TaskUploadCard: React.FC = () => {
+    const navigate = useNavigate();
     const [showSecondComponent, setShowSecondComponent] = useState(false);
     const [formData, setFormData] = useState({
         category: 'OTHER',
@@ -41,6 +43,7 @@ export const TaskUploadCard: React.FC = () => {
                 }
             });
             console.log('Task created successfully:', response.data);
+            navigate(`/dashboard/page/1`);
         } catch (error) {
             console.error('Error creating task:', error);
         }
