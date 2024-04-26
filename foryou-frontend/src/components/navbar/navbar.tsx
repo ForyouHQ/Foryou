@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import css from './navbar.module.css';
 import {NavLink, useNavigate} from "react-router-dom";
 import logo from "../../assets/logos/logo_foryou.svg";
+import {LOGIN_PAGE} from "../../constants/routes";
 
 const Navbar: React.FC = () => {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Navbar: React.FC = () => {
         localStorage.removeItem("userId");
         localStorage.removeItem("token");
         setIsLoggedIn(false);
-        navigate('/login');
+        navigate(LOGIN_PAGE);
     };
 
     return (
@@ -32,7 +33,7 @@ const Navbar: React.FC = () => {
                         <button className={`${css.btn} ${css.btnSignin}`} onClick={handleLogout}>Log out</button>
                     ) : (
                         <>
-                            <NavLink to="/login">
+                            <NavLink to="/">
                                 <button className={`${css.btn} ${css.btnSignin}`}>Log in</button>
                             </NavLink>
                             <NavLink to="/register">
