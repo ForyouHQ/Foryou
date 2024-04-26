@@ -19,7 +19,7 @@ export const LoginCard: React.FC = () => {
 
             const response = await fetch(API_URL, {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({email, password}),
             });
             
