@@ -14,7 +14,6 @@ interface FilterBarProps {
 }
 
 export const FilterBar: React.FC<FilterBarProps> = ({ setFilteredCategory, setCurrentPage, setTotalPages }: FilterBarProps) => {
-
     const navigate = useNavigate();
 
     const reset = () => {

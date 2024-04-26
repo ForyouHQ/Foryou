@@ -3,11 +3,13 @@ import css from './login-card.module.css';
 import {LoginInput} from "../login-input/login-input";
 import {CardButton} from "../card-button/card-button";
 import {SignInText} from "../sign-in-text/sign-in-text";
+import {useNavigate} from "react-router-dom";
 
 export const LoginCard: React.FC = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
@@ -25,6 +27,7 @@ export const LoginCard: React.FC = () => {
 
             localStorage.setItem('token', data.token);
             localStorage.setItem('userId',data.userId);
+            navigate(`/dashboard/page/1`);
         } catch (error) {
             console.error('Error:', error);
         } finally {
