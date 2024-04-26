@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
                     {isLoggedIn ? (
                         <>
                             <button className={`${css.btn} ${css.btnSignin}`} onClick={handleLogout}>Log out</button>
-                            <button className={`${css.btn} ${css.btnRegister}`} onClick={addTask}>Add Task</button>
+                            <button className={`${css.btn} ${css.btnAddTask}`} onClick={addTask}>Add Task</button>
                         </>
                     ) : (
                         <>
