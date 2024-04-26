@@ -27,7 +27,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/tasks", produces = MediaTypes.HAL_JSON_VALUE)
-@CrossOrigin
 public class TaskController {
 
     private final TaskService taskService;
