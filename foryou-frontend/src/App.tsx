@@ -14,7 +14,7 @@ function App() {
                 <Route path={REGISTER_PAGE} element={<Register/>}/>
                 <Route path={LOGIN_PAGE} element={<Login/>}/>
                 <Route path={TASK_UPLOAD_PAGE} element={<TaskUpload/>}/>
-                <Route path={DASHBOARD_PAGE} element={<Dashboard/>}/>
+                <Route path={`${DASHBOARD_PAGE}/page/:pageNumber`} element={<Dashboard />} />
             </Routes>
         </Router>
     );

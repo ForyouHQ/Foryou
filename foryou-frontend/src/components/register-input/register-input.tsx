@@ -85,7 +85,7 @@ export const RegisterInput: React.FC<{
         <div className={css.container}>
             {showSecondComponent ? secondRegisterComponent() : firstRegisterComponent()}
             <div className={css.signInText}>
-                <Link to={"/login"}>
+                <Link to={"/"}>
                     <SignInText firstText={"Already Have An Account?"} secondText={""}/>
                 </Link>
             </div>

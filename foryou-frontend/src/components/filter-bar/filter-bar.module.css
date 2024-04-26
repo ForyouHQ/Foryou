@@ -1,0 +1,46 @@
+.container {
+    width: 17.125rem;
+    height: 50rem;
+    background-color: #01A9B4;
+    border-top-left-radius: 1.25rem;
+    border-bottom-left-radius: 1.25rem;
+    flex-direction: column;
+    padding: 1.25rem;
+    margin-left: 1rem;
+    display: flex;
+}
+
+.logo {
+    font-size: 1.25rem;
+    color: white;
+    margin-bottom: 1.25rem;
+}
+
+.logoSpacing {
+    padding-right: 0.5rem;
+}
+
+.categories {
+    color: white;
+    margin-bottom: 1.25rem;
+}
+
+.categoriesItem {
+    color: white;
+    padding-bottom: 1.4rem;
+    cursor: pointer;
+}
+
+.filterButton {
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 0.313rem;
+    padding: 0.625rem 1.25rem;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+.categories {
+    padding-left: 1rem;
+}

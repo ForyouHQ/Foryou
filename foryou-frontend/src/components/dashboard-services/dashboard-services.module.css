@@ -4,8 +4,12 @@
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    max-width: 62.5rem;
+    max-width: 80rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 33.3333%;
 }
+
 .card {
     display: flex;
     flex-direction: column;

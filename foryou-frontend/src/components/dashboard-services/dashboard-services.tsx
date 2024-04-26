@@ -1,130 +1,115 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import css from './dashboard-services.module.css';
 import stockImage from "../../assets/stock/dog_stock_image.png";
 import {ServiceButton} from "../service-button/service-button";
 
-export const DashboardServices: React.FC = () => {
+interface Task {
+    id: number;
+    category: string;
+    title: string;
+    price: number;
+}
+
+interface TaskResponse {
+    _embedded: {
+        _content: Task[];
+    };
+    _links: {
+        self: {
+            href: string;
+        };
+    };
+    page: {
+        size: number;
+        totalElements: number;
+        number: number;
+    };
+}
+
+interface DashboardServicesProps {
+    currentPage: number;
+    totalPages: number;
+    filteredCategory: string;
+    setCurrentPage: (page: number) => void;
+    setTotalPages: (total: number) => void;
+}
+
+export const DashboardServices: React.FC<DashboardServicesProps> = ({currentPage, totalPages, setCurrentPage, filteredCategory, setTotalPages}) => {
+    const [tasks, setTasks] = useState<Task[]>([]);
+    const [title, setTitle] = useState<string>("");
+
+    useEffect(() => {
+        if (!filteredCategory) {
+            fetchData();
+        } else {
+            filterData();
+        }
+    }, [currentPage, filteredCategory]);
+
+
+    const fetchData = async () => {
+        try {
+            const API_URL = process.env.REACT_APP_TASK_UPLOAD_API_URL
+            if (!API_URL) throw new Error('REACT_APP_API_URL is not defined. Please set the environment variable.');
+
+            const token = localStorage.getItem('token');
+            if (!token) throw new Error('JWT token not found.');
+
+            const response = await fetch(`${API_URL}?page=${currentPage}&size=10`, {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            });
+
+            const data: TaskResponse = await response.json();
+            setTasks(data._embedded._content);
+            setTotalPages(Math.ceil(data.page.totalElements / data.page.size));
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const filterData = async () => {
+        try {
+            const API_URL = process.env.REACT_APP_FILTER_TASKS_API_URL;
+            if (!API_URL) throw new Error('REACT_APP_API_URL is not defined. Please set the environment variable.');
+
+            const token = localStorage.getItem('token');
+            if (!token) throw new Error('JWT token not found.');
+
+            const response = await fetch(`${API_URL}?page=${currentPage}&size=10`, {
+                method: 'POST',
+                body: JSON.stringify({ categories: [filteredCategory], title }),
+                headers: {
+                    'Content-Type': 'application/json', Authorization: `Bearer ${token}`
+                }
+            });
+
+            const data: TaskResponse = await response.json();
+            setTasks(data._embedded._content);
+            setTotalPages(Math.ceil(data.page.totalElements / data.page.size));
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+
     return (
         <div className={css.container}>
-            <div className={css.card}>
-                <img src={stockImage} alt="Service Image" className={css.image} />
-                <div className={css.details}>
-                    <div className={css.container}>
-                        <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>€15,00</span>
+            {tasks.map(task => (
+                <div key={task.id} className={css.card}>
+                    <img src={stockImage} alt="Service Image" className={css.image}/>
+                    <div className={css.details}>
+                        <div className={css.container}>
+                            <span className={css.tag}>{task.category}</span>
+                            <span className={css.price}>€{task.price.toFixed(2)}</span>
+                        </div>
+                        <p className={css.title}>{task.title}</p>
+                        <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
                     </div>
-                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
-                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
                 </div>
-            </div>
-
-            <div className={css.card}>
-                <img src={stockImage} alt="Service Image" className={css.image} />
-                <div className={css.details}>
-                    <div className={css.container}>
-                        <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>€15,00</span>
-                    </div>
-                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
-                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
-                </div>
-            </div>
-
-            <div className={css.card}>
-                <img src={stockImage} alt="Service Image" className={css.image} />
-                <div className={css.details}>
-                    <div className={css.container}>
-                        <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>€15,00</span>
-                    </div>
-                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
-                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
-                </div>
-            </div>
-
-            <div className={css.card}>
-                <img src={stockImage} alt="Service Image" className={css.image} />
-                <div className={css.details}>
-                    <div className={css.container}>
-                        <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>€15,00</span>
-                    </div>
-                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
-                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
-                </div>
-            </div>
-
-            <div className={css.card}>
-                <img src={stockImage} alt="Service Image" className={css.image} />
-                <div className={css.details}>
-                    <div className={css.container}>
-                        <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>€15,00</span>
-                    </div>
-                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
-                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
-                </div>
-            </div>
-
-            <div className={css.card}>
-                <img src={stockImage} alt="Service Image" className={css.image} />
-                <div className={css.details}>
-                    <div className={css.container}>
-                        <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>€15,00</span>
-                    </div>
-                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
-                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
-                </div>
-            </div>
-
-            <div className={css.card}>
-                <img src={stockImage} alt="Service Image" className={css.image} />
-                <div className={css.details}>
-                    <div className={css.container}>
-                        <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>€15,00</span>
-                    </div>
-                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
-                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
-                </div>
-            </div>
-
-            <div className={css.card}>
-                <img src={stockImage} alt="Service Image" className={css.image} />
-                <div className={css.details}>
-                    <div className={css.container}>
-                        <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>€15,00</span>
-                    </div>
-                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
-                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
-                </div>
-            </div>
-
-            <div className={css.card}>
-                <img src={stockImage} alt="Service Image" className={css.image} />
-                <div className={css.details}>
-                    <div className={css.container}>
-                        <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>€15,00</span>
-                    </div>
-                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
-                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
-                </div>
-            </div>
-
-            <div className={css.card}>
-                <img src={stockImage} alt="Service Image" className={css.image} />
-                <div className={css.details}>
-                    <div className={css.container}>
-                        <span className={css.tag}>Dieren</span>
-                        <span className={css.price}>€15,00</span>
-                    </div>
-                    <p className={css.title}>Kan iemand mijn hond uitlaten?</p>
-                    <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
-                </div>
-            </div>
+            ))}
         </div>
     );
 };

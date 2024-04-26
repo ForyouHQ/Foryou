@@ -29,22 +29,28 @@ public class JwtService {
     }
 
     public String generateToken(User userSignInModel) {
-        return generateToken(new HashMap<>(), userSignInModel);
+        return generateToken(new HashMap<>(), userSignInModel, 24 * 60 * 60 * 1000);
     }
 
     public String generateToken(
             Map<String, Objects> extraClaims,
-            User userSignInModel
+            User userSignInModel,
+            long expirationTimeMillis
     ) {
+        long currentTimeMillis = System.currentTimeMillis();
+        Date issuedAt = new Date(currentTimeMillis);
+        Date expiration = new Date(currentTimeMillis + expirationTimeMillis);
+
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
                 .setSubject(userSignInModel.getEmail())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .setIssuedAt(issuedAt)
+                .setExpiration(expiration)
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
+
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);

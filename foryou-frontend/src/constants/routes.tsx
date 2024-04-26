@@ -1,4 +1,4 @@
 export const REGISTER_PAGE = "/register";
-export const LOGIN_PAGE = "/login";
+export const LOGIN_PAGE = "/";
 export const TASK_UPLOAD_PAGE = "/task";
-export const DASHBOARD_PAGE = "/";
+export const DASHBOARD_PAGE = "/dashboard";
