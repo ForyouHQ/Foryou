@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api/v1/auth", produces = MediaTypes.HAL_JSON_VALUE)
+@CrossOrigin
 public class UserController {
 
     private final UserService userService;
