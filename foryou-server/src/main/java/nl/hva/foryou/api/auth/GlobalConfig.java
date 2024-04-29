@@ -12,7 +12,8 @@ public class GlobalConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
-                .allowedOrigins("https://foryou-server-test.onrender.com/", "https://foryou-frontend-test.onrender.com/")
-                .allowedMethods("GET", "POST", "PUT", "DELETE");
+                .allowedOrigins("*")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("*");
     }
 }
