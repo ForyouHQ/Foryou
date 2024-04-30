@@ -12,9 +12,9 @@ public class GlobalConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
                 .allowedOrigins(
-                        "https://foryou-server-test.onrender.com/",
-                        "https://foryou-frontend-test.onrender.com/",
-                        "http://localhost:3000/")
+                        "https://foryou-server-test.onrender.com",
+                        "https://foryou-frontend-test.onrender.com",
+                        "http://localhost:3000")
                 .allowedMethods("GET", "POST", "PUT", "DELETE");
     }
 }
