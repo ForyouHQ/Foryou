@@ -31,7 +31,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                .csrf().disable();
+                .csrf();
 
         return http.build();
     }
