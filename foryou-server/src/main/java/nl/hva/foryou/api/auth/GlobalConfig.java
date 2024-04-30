@@ -1,7 +1,6 @@
 package nl.hva.foryou.api.auth;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -12,8 +11,10 @@ public class GlobalConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("*");
+                .allowedOrigins(
+                        "https://foryou-server-test.onrender.com/",
+                        "https://foryou-frontend-test.onrender.com/",
+                        "http://localhost:3000/")
+                .allowedMethods("GET", "POST", "PUT", "DELETE");
     }
 }
