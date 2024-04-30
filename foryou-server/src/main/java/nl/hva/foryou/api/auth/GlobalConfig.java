@@ -15,6 +15,8 @@ public class GlobalConfig implements WebMvcConfigurer {
                         "https://foryou-server-test.onrender.com",
                         "https://foryou-frontend-test.onrender.com",
                         "http://localhost:3000")
-                .allowedMethods("GET", "POST", "PUT", "DELETE");
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("Authorization", "Content-Type")
+                .exposedHeaders("Authorization");
     }
 }
