@@ -17,6 +17,7 @@ public class GlobalConfig implements WebMvcConfigurer {
                         "http://localhost:3000")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("Authorization", "Content-Type")
-                .exposedHeaders("Authorization");
+                .exposedHeaders("Authorization")
+                .allowCredentials(true);
     }
 }
