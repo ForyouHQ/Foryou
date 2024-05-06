@@ -1,14 +1,16 @@
 package nl.hva.foryou.api.controller;
 
 import jakarta.validation.Valid;
+import nl.hva.foryou.api.converter.TaskContactInfoConverter;
 import nl.hva.foryou.api.converter.TaskConverter;
 import nl.hva.foryou.api.converter.TaskSummaryConverter;
+import nl.hva.foryou.api.model.TaskContactInfoModel;
 import nl.hva.foryou.api.model.TaskModel;
 import nl.hva.foryou.api.model.TaskSummaryModel;
+import nl.hva.foryou.exception.TaskNotFoundException;
 import nl.hva.foryou.exception.UserNotFoundException;
-import nl.hva.foryou.presistence.domain.Task;
-import nl.hva.foryou.presistence.domain.TaskSummary;
-import nl.hva.foryou.presistence.domain.User;
+import nl.hva.foryou.presistence.domain.*;
+import nl.hva.foryou.service.task.TaskContactInfoService;
 import nl.hva.foryou.service.task.TaskService;
 import nl.hva.foryou.service.UserService;
 import nl.hva.foryou.service.task.TasksQuery;
@@ -34,14 +36,19 @@ public class TaskController {
 
     private final UserService userService;
 
+    private final TaskContactInfoService taskContactInfoService;
+
     private final TaskConverter taskConverter = new TaskConverter();
 
     private final TaskSummaryConverter taskSummaryConverter = new TaskSummaryConverter();
 
+    private final TaskContactInfoConverter taskContactInfoConverter = new TaskContactInfoConverter();
 
-    public TaskController(TaskService taskService, UserService userService) {
+
+    public TaskController(TaskService taskService, UserService userService, TaskContactInfoService taskContactInfoService) {
         this.taskService = taskService;
         this.userService = userService;
+        this.taskContactInfoService = taskContactInfoService;
     }
 
     @PostMapping
@@ -54,6 +61,19 @@ public class TaskController {
         task.setUser(user);
         Task createdTask = taskService.createTask(task);
         return ResponseEntity.status(HttpStatus.CREATED).body(taskConverter.toModel(createdTask));
+    }
+
+    @PostMapping("/contact")
+    public ResponseEntity<TaskContactInfoModel> createTaskContactInfo(@RequestBody TaskContactInfoModel taskContactInfoModel) {
+        TaskContactInfo taskContactInfo = taskContactInfoConverter.toEntity(taskContactInfoModel);
+        Task task = taskService.getTask(taskContactInfoModel.getTaskId());
+        if (task == null) {
+            throw new TaskNotFoundException(taskContactInfoModel.getTaskId());
+        }
+        taskContactInfo.setTask(task);
+        taskContactInfoService.createTaskContactInfo(taskContactInfo);
+        TaskContactInfoModel taskContactInfoModelCreated = taskContactInfoConverter.toModel(taskContactInfo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(taskContactInfoModelCreated);
     }
 
     @GetMapping
