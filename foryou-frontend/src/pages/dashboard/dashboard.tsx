@@ -22,32 +22,15 @@ export const Dashboard: React.FC = () => {
         setCurrentPage(parsedPageNumber - 1);
     }, [pageNumber, totalPages, navigate]);
 
-    const handlePreviousClick = () => {
-        setCurrentPage(currentPage - 1);
-        updateUrl(currentPage - 1);
-    };
-
-    const handleNextClick = () => {
-        setCurrentPage(currentPage + 1);
-        updateUrl(currentPage + 1);
-    };
-
-    const updateUrl = (page: number) => {
-        navigate(`/dashboard/page/${page + 1}`);
-    };
-
     return (
         <div className={css.container}>
             <Navbar/>
-            <div className={css.buttons}>
-                <button onClick={handlePreviousClick} disabled={currentPage === 0} className={css.buttonOne}>Previous</button>
-                <button onClick={handleNextClick} disabled={currentPage === totalPages - 1} className={css.buttonTwo}>Next</button>
-            </div>
+
             <div className={css.services}>
                 <DashboardServices currentPage={currentPage} filteredCategory={filteredCategory} totalPages={totalPages} setCurrentPage={setCurrentPage} setTotalPages={setTotalPages}/>
             </div>
             <div className={css.filterBar}>
-                <FilterBar setFilteredCategory={setFilteredCategory} setCurrentPage={setCurrentPage} setTotalPages={setTotalPages}/>
+                <FilterBar setFilteredCategory={setFilteredCategory} setCurrentPage={setCurrentPage} setTotalPages={setTotalPages} currentPage={currentPage} totalPages={totalPages}/>
             </div>
         </div>
     );
