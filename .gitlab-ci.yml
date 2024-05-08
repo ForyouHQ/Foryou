@@ -1,5 +1,6 @@
 stages:
   - sonarqube-check
+  - sonarqube-check-backend
   - build-and-push-backend
   - build-and-push-frontend
 
@@ -20,7 +21,29 @@ sonarqube-check:
     paths:
       - .sonar/cache
   script:
+    - cd foryou-frontend
     - sonar-scanner
+  allow_failure: true
+  only:
+    - merge_requests
+    - main
+    - develop
+  tags:
+    - hva
+
+sonarqube-check-backend:
+  stage: sonarqube-check-backend
+  image: maven:3-eclipse-temurin-17
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar" # Defines the location of the analysis task cache
+    GIT_DEPTH: "0" # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:
+    - cd foryou-server
+    - mvn verify sonar:sonar
   allow_failure: true
   only:
     - merge_requests
