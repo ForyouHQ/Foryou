@@ -29,10 +29,6 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public Task getTask(Long id) {
-        return taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException(id));
-    }
-
     public Page<TaskSummary> getAllTasks(Pageable pageable) {
         return taskRepository.findAllTaskSummaries(pageable);
     }
@@ -44,6 +40,10 @@ public class TaskService {
     public Page<Task> filterTasks(TasksQuery query, Pageable pageable) {
         return taskRepository.findAll(TaskSpecifications.querySpecification(query), pageable);
 
+    }
+
+    public Task getTaskById(Long id) {
+        return taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException(id));
     }
 
 }

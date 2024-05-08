@@ -3,12 +3,19 @@ package nl.hva.foryou.api.controller;
 import jakarta.validation.Valid;
 import nl.hva.foryou.api.converter.TaskContactInfoConverter;
 import nl.hva.foryou.api.converter.TaskConverter;
+import nl.hva.foryou.api.converter.TaskDetailsConverter;
 import nl.hva.foryou.api.converter.TaskSummaryConverter;
+import nl.hva.foryou.api.converter.UserAddressConverter;
+import nl.hva.foryou.api.model.TaskDetailsModel;
 import nl.hva.foryou.api.model.TaskContactInfoModel;
 import nl.hva.foryou.api.model.TaskModel;
 import nl.hva.foryou.api.model.TaskSummaryModel;
 import nl.hva.foryou.exception.TaskNotFoundException;
 import nl.hva.foryou.exception.UserNotFoundException;
+import nl.hva.foryou.presistence.domain.Task;
+import nl.hva.foryou.presistence.domain.TaskSummary;
+import nl.hva.foryou.presistence.domain.User;
+import nl.hva.foryou.presistence.domain.UserAddress;
 import nl.hva.foryou.presistence.domain.*;
 import nl.hva.foryou.service.task.TaskContactInfoService;
 import nl.hva.foryou.service.task.TaskService;
@@ -96,5 +103,18 @@ public class TaskController {
         Page<Task> tasks = taskService.filterTasks(query, pageable);
         Page<TaskSummaryModel> taskSummaryModels = taskConverter.toTaskSummaryModels(tasks);
         return ResponseEntity.ok(assembler.toModel(taskSummaryModels));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getTask(@PathVariable Long id) {
+        Task task = taskService.getTaskById(id);
+        User user = task.getUser();
+        if (user == null) {
+            throw new UserNotFoundException("User not found for task with id: " + id);
+        }
+        UserAddress userAddress = userService.findUserAddressByUserId(user.getId());
+        TaskDetailsModel taskDetailsModel = taskDetailsConverter.toModel(task);
+        taskDetailsModel.setAddress(userAddressConverter.toModel(userAddress));
+        return ResponseEntity.ok().body(taskDetailsModel);
     }
 }
