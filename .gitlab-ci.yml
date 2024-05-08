@@ -42,7 +42,6 @@ sonarqube-check-backend:
     paths:
       - .sonar/cache
   script:
-    - cd foryou-server
     - mvn verify sonar:sonar
   allow_failure: true
   only:
