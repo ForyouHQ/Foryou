@@ -1,6 +1,5 @@
 stages:
   - sonarqube-check
-  - mirror
   - build-and-push-backend
   - build-and-push-frontend
 
