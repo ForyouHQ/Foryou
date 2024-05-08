@@ -1,4 +1,5 @@
 stages:
+  - sonarqube-check
   - mirror
   - build-and-push-backend
   - build-and-push-frontend
@@ -7,32 +8,54 @@ variables:
   DOCKER_IMAGE_BACKEND: ForYouHQ/foryou-server:latest
   DOCKER_IMAGE_FRONTEND: ForYouHQ/foryou-frontend:latest
 
+sonarqube-check:
+  stage: sonarqube-check
+  image:
+    name: sonarsource/sonar-scanner-cli:5.0
+    entrypoint: [""]
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar" # Defines the location of the analysis task cache
+    GIT_DEPTH: "0" # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner
+  allow_failure: true
+  only:
+    - merge_requests
+    - main
+    - develop
+  tags:
+    - hva
+
 mirror_to_github:
   stage: mirror
   image: maven:3-eclipse-temurin-17
   script:
-  - git config --global user.email "contactforyouhq@gmail.com"
-  - git config --global user.name "ForyouHQ"
+    - git config --global user.email "contactforyouhq@gmail.com"
+    - git config --global user.name "ForyouHQ"
 
-  - git clone https://oauth2:$MOHANED_TOKEN@gitlab.fdmci.hva.nl/se-specialization-2023-2/projects-tse1/ewamon/foryou
-  - cd foryou
+    - git clone https://oauth2:$MOHANED_TOKEN@gitlab.fdmci.hva.nl/se-specialization-2023-2/projects-tse1/ewamon/foryou
+    - cd foryou
 
-  - git remote rename origin gitlab
-  - git remote add github https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git
+    - git remote rename origin gitlab
+    - git remote add github https://oauth2:$GITHUB_MOHANED_TOKEN@github.com/ForyouHQ/Foryou.git
 
-  - git fetch gitlab main
-  - git checkout main
-  - git pull gitlab main
-  - git fetch github main
-  - git merge github/main
-  - git push github main
+    - git fetch gitlab main
+    - git checkout main
+    - git pull gitlab main
+    - git fetch github main
+    - git merge github/main
+    - git push github main
 
-  - git fetch gitlab develop
-  - git checkout develop
-  - git pull gitlab develop
-  - git fetch github develop
-  - git merge github/develop
-  - git push github develop
+    - git fetch gitlab develop
+    - git checkout develop
+    - git pull gitlab develop
+    - git fetch github develop
+    - git merge github/develop
+    - git push github develop
   only:
     - main
     - develop
@@ -50,7 +73,7 @@ build-and-push-backend:
   only:
     - develop
   tags:
-    - docker  
+    - docker
 
 build-and-push-frontend:
   stage: build-and-push-frontend
@@ -62,4 +85,4 @@ build-and-push-frontend:
   only:
     - develop
   tags:
-    - hva  
+    - hva
