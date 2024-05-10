@@ -3,7 +3,6 @@ import css from './dashboard-services.module.css';
 import stockImage from "../../assets/stock/dog_stock_image.png";
 import {ServiceButton} from "../service-button/service-button";
 import magnifyingGlass from "../../assets/functional-images/magnifying-glass.png";
-import {useLocation, useNavigate} from "react-router-dom";
 
 interface Task {
     id: number;
@@ -39,9 +38,9 @@ interface DashboardServicesProps {
 export const DashboardServices: React.FC<DashboardServicesProps> = ({currentPage, totalPages, setCurrentPage, filteredCategory, setTotalPages}) => {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [title, setTitle] = useState<string>("");
-
+    
     useEffect(() => {
-        if (!filteredCategory) {
+        if (!filteredCategory && !title) {
             getAllTasks();
         } else {
             filterTasks();
