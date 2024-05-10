@@ -2,7 +2,6 @@ package nl.hva.foryou.api.converter;
 
 import nl.hva.foryou.api.controller.UserController;
 import nl.hva.foryou.api.model.UserAddressModel;
-import nl.hva.foryou.presistence.domain.AddressInfo;
 import nl.hva.foryou.presistence.domain.UserAddress;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 

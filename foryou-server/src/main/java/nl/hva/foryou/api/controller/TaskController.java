@@ -61,6 +61,8 @@ public class TaskController {
         TaskContactInfo taskContactInfo = new TaskContactInfo();
         taskContactInfo.setTask(createdTask);
         taskContactInfo.setAddressInfo(model.getAddress());
+        taskContactInfo.setEmail(model.getEmail());
+        taskContactInfo.setPhone(model.getPhone());
         taskContactInfoService.createTaskContactInfo(taskContactInfo);
         TaskDetailsModel taskDetailsModel = taskDetailsConverter.toModel(createdTask);
         taskDetailsModel.setAddress(model.getAddress());
@@ -101,4 +103,5 @@ public class TaskController {
         taskDetailsModel.setAddress(userAddress.getAddressInfo());
         return ResponseEntity.ok().body(taskDetailsModel);
     }
+
 }

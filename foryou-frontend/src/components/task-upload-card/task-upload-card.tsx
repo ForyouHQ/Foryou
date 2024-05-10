@@ -13,20 +13,33 @@ export const TaskUploadCard: React.FC = () => {
         title: '',
         price: '',
         description: '',
-        phoneNumber: '',
-        street: '',
-        houseNumber: '',
-        postalCode: '',
-        city: '',
+        phone: '',
+        email: '',
+        address: {
+            street: "",
+            houseNumber: "",
+            postalCode: "",
+            city: ""
+        },
         userId: Number(localStorage.getItem("userId"))
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const {name, value} = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+        if (["street", "houseNumber", "postalCode", "city"].includes(name)) {
+            setFormData({
+                ...formData,
+                address: {
+                    ...formData.address,
+                    [name]: value
+                }
+            });
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value
+            });
+        }
     };
 
     const createTask = async () => {
@@ -61,11 +74,15 @@ export const TaskUploadCard: React.FC = () => {
             const contactInfo = response.data;
             setFormData({
                 ...formData,
-                phoneNumber: contactInfo.phone,
-                street: contactInfo.address.street,
-                houseNumber: contactInfo.address.houseNumber,
-                postalCode: contactInfo.address.postalCode,
-                city: contactInfo.address.city
+                phone: contactInfo.phone,
+                email: contactInfo.email,
+                address: {
+                    ...formData.address,
+                    street: contactInfo.address.street,
+                    houseNumber: contactInfo.address.houseNumber,
+                    postalCode: contactInfo.address.postalCode,
+                    city: contactInfo.address.city
+                }
             });
         } catch (error) {
             console.error('Error fetching user contact info:', error);

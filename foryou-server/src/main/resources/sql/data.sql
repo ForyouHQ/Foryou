@@ -174,8 +174,8 @@ VALUES ('TASK2', '2024-04-24 22:01:09.591056', 'I need somebody to upgrade my RA
 -- Dumping data for table `task_contact_info`
 --
 
-INSERT INTO `task_contact_info` (city, house_number, house_number_suffix, postal_code, street, email,
-                                 phone, task_id)
+INSERT INTO `task_contact_info` (city, email, house_number, house_number_suffix, phone, postal_code, street,
+                                 task_id)
 VALUES ('city', 'laila@test.nl', '1', NULL, '12345678', '1234cv', 'street', 12);
 
 --

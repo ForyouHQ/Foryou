@@ -79,7 +79,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/contactInfo/{userId}")
-    public ResponseEntity<UserAddressModel> getUserContactInfo(@PathVariable Long userId) {
+    public ResponseEntity<UserContactInfoModel> getUserContactInfo(@PathVariable Long userId) {
         User user = userService.findUserById(userId);
         if (user == null) {
             throw new UserNotFoundException(userId);
@@ -88,6 +88,11 @@ public class UserController {
         if (userAddress == null) {
             throw new UserNotFoundException(userId);
         }
-        return ResponseEntity.ok(userAddressConverter.toModel(userAddress));
+        UserContactInfoModel userContactInfoModel = new UserContactInfoModel();
+        userContactInfoModel.setPhone(user.getPhone());
+        userContactInfoModel.setEmail(user.getEmail());
+        userContactInfoModel.setAddress(userAddress.getAddressInfo());
+        return ResponseEntity.ok(userContactInfoModel);
     }
+
 }
