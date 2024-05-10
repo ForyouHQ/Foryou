@@ -1,7 +1,7 @@
 package nl.hva.foryou.service.task;
 
-import nl.hva.foryou.presistence.domain.Task;
-import nl.hva.foryou.presistence.domain.TaskCategory;
+import nl.hva.foryou.presistence.domain.task.Task;
+import nl.hva.foryou.presistence.domain.task.TaskCategory;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.ArrayList;

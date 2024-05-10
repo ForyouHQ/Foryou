@@ -1,22 +1,16 @@
 package nl.hva.foryou.api.controller;
 
 import jakarta.validation.Valid;
-import nl.hva.foryou.api.converter.TaskContactInfoConverter;
-import nl.hva.foryou.api.converter.TaskConverter;
 import nl.hva.foryou.api.converter.TaskDetailsConverter;
 import nl.hva.foryou.api.converter.TaskSummaryConverter;
-import nl.hva.foryou.api.converter.UserAddressConverter;
 import nl.hva.foryou.api.model.TaskDetailsModel;
-import nl.hva.foryou.api.model.TaskContactInfoModel;
-import nl.hva.foryou.api.model.TaskModel;
 import nl.hva.foryou.api.model.TaskSummaryModel;
-import nl.hva.foryou.exception.TaskNotFoundException;
 import nl.hva.foryou.exception.UserNotFoundException;
-import nl.hva.foryou.presistence.domain.Task;
-import nl.hva.foryou.presistence.domain.TaskSummary;
+import nl.hva.foryou.presistence.domain.task.Task;
+import nl.hva.foryou.presistence.domain.task.TaskContactInfo;
+import nl.hva.foryou.presistence.domain.task.TaskSummary;
 import nl.hva.foryou.presistence.domain.User;
 import nl.hva.foryou.presistence.domain.UserAddress;
-import nl.hva.foryou.presistence.domain.*;
 import nl.hva.foryou.service.task.TaskContactInfoService;
 import nl.hva.foryou.service.task.TaskService;
 import nl.hva.foryou.service.UserService;
@@ -45,12 +39,9 @@ public class TaskController {
 
     private final TaskContactInfoService taskContactInfoService;
 
-    private final TaskConverter taskConverter = new TaskConverter();
-
     private final TaskSummaryConverter taskSummaryConverter = new TaskSummaryConverter();
 
-    private final TaskContactInfoConverter taskContactInfoConverter = new TaskContactInfoConverter();
-
+    private final TaskDetailsConverter taskDetailsConverter = new TaskDetailsConverter();
 
     public TaskController(TaskService taskService, UserService userService, TaskContactInfoService taskContactInfoService) {
         this.taskService = taskService;
@@ -59,28 +50,21 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<TaskModel> createTask(@RequestBody TaskModel model) {
-        Task task = taskConverter.toEntity(model);
+    public ResponseEntity<TaskDetailsModel> createTask(@RequestBody TaskDetailsModel model) {
+        Task task = taskDetailsConverter.toEntity(model);
         User user = userService.findUserById(model.getUserId());
         if (user == null) {
             throw new UserNotFoundException(model.getUserId());
         }
         task.setUser(user);
         Task createdTask = taskService.createTask(task);
-        return ResponseEntity.status(HttpStatus.CREATED).body(taskConverter.toModel(createdTask));
-    }
-
-    @PostMapping("/contact")
-    public ResponseEntity<TaskContactInfoModel> createTaskContactInfo(@RequestBody TaskContactInfoModel taskContactInfoModel) {
-        TaskContactInfo taskContactInfo = taskContactInfoConverter.toEntity(taskContactInfoModel);
-        Task task = taskService.getTask(taskContactInfoModel.getTaskId());
-        if (task == null) {
-            throw new TaskNotFoundException(taskContactInfoModel.getTaskId());
-        }
-        taskContactInfo.setTask(task);
+        TaskContactInfo taskContactInfo = new TaskContactInfo();
+        taskContactInfo.setTask(createdTask);
+        taskContactInfo.setAddressInfo(model.getAddress());
         taskContactInfoService.createTaskContactInfo(taskContactInfo);
-        TaskContactInfoModel taskContactInfoModelCreated = taskContactInfoConverter.toModel(taskContactInfo);
-        return ResponseEntity.status(HttpStatus.CREATED).body(taskContactInfoModelCreated);
+        TaskDetailsModel taskDetailsModel = taskDetailsConverter.toModel(createdTask);
+        taskDetailsModel.setAddress(model.getAddress());
+        return ResponseEntity.status(HttpStatus.CREATED).body(taskDetailsModel);
     }
 
     @GetMapping
@@ -101,7 +85,7 @@ public class TaskController {
             PagedResourcesAssembler<TaskSummaryModel> assembler) {
 
         Page<Task> tasks = taskService.filterTasks(query, pageable);
-        Page<TaskSummaryModel> taskSummaryModels = taskConverter.toTaskSummaryModels(tasks);
+        Page<TaskSummaryModel> taskSummaryModels = taskSummaryConverter.toTaskSummaryModels(tasks);
         return ResponseEntity.ok(assembler.toModel(taskSummaryModels));
     }
 
@@ -114,7 +98,7 @@ public class TaskController {
         }
         UserAddress userAddress = userService.findUserAddressByUserId(user.getId());
         TaskDetailsModel taskDetailsModel = taskDetailsConverter.toModel(task);
-        taskDetailsModel.setAddress(userAddressConverter.toModel(userAddress));
+        taskDetailsModel.setAddress(userAddress.getAddressInfo());
         return ResponseEntity.ok().body(taskDetailsModel);
     }
 }

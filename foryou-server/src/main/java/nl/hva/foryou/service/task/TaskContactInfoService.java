@@ -1,7 +1,7 @@
 package nl.hva.foryou.service.task;
 
 import jakarta.transaction.Transactional;
-import nl.hva.foryou.presistence.domain.TaskContactInfo;
+import nl.hva.foryou.presistence.domain.task.TaskContactInfo;
 import nl.hva.foryou.presistence.repository.TaskContactInfoRepository;
 import org.springframework.stereotype.Service;
 

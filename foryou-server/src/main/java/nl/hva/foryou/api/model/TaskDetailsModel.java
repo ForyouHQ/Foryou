@@ -1,6 +1,7 @@
 package nl.hva.foryou.api.model;
 
-import nl.hva.foryou.presistence.domain.TaskCategory;
+import nl.hva.foryou.presistence.domain.AddressInfo;
+import nl.hva.foryou.presistence.domain.task.TaskCategory;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
@@ -10,7 +11,7 @@ import java.time.ZonedDateTime;
 @Relation(collectionRelation = "_content")
 public class TaskDetailsModel extends RepresentationModel<TaskDetailsModel> {
 
-    private Long id;
+    private Long userId;
 
     private String title;
 
@@ -22,18 +23,18 @@ public class TaskDetailsModel extends RepresentationModel<TaskDetailsModel> {
 
     private ZonedDateTime creationDate;
 
-    private UserAddressModel address;
+    private AddressInfo address;
 
     private String email;
 
     private String phone;
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getDescription() {
@@ -76,11 +77,11 @@ public class TaskDetailsModel extends RepresentationModel<TaskDetailsModel> {
         this.creationDate = creationDate;
     }
 
-    public UserAddressModel getAddress() {
+    public AddressInfo getAddress() {
         return address;
     }
 
-    public void setAddress(UserAddressModel address) {
+    public void setAddress(AddressInfo address) {
         this.address = address;
     }
 

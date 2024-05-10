@@ -1,8 +1,10 @@
-package nl.hva.foryou.presistence.domain;
+package nl.hva.foryou.presistence.domain.task;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import nl.hva.foryou.presistence.domain.BaseJpaEntity;
+import nl.hva.foryou.presistence.domain.User;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;

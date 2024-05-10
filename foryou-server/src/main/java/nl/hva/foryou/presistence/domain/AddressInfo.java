@@ -1,13 +1,10 @@
 package nl.hva.foryou.presistence.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotBlank;
 
-@Entity
-public class TaskContactInfo extends BaseJpaEntity{
+@Embeddable
+public class AddressInfo{
 
     @NotBlank
     private String street;
@@ -22,16 +19,6 @@ public class TaskContactInfo extends BaseJpaEntity{
 
     @NotBlank
     private String city;
-
-    @NotBlank
-    private String phone;
-
-    @NotBlank
-    @Column(unique = true)
-    private String email;
-
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
-    private Task task;
 
     public String getStreet() {
         return street;
@@ -73,27 +60,4 @@ public class TaskContactInfo extends BaseJpaEntity{
         this.city = city;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Task getTask() {
-        return task;
-    }
-
-    public void setTask(Task task) {
-        this.task = task;
-    }
 }

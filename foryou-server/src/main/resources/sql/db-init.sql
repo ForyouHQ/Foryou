@@ -1,9 +1,3 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
---
--- Host: oege.ie.hva.nl    Database: zalhasal
--- ------------------------------------------------------
--- Server version	8.0.36-0ubuntu0.20.04.1
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT = @@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS = @@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION = @@COLLATION_CONNECTION */;
@@ -25,12 +19,12 @@ DROP TABLE IF EXISTS `task`;
 CREATE TABLE `task`
 (
     `id`            bigint                                 NOT NULL AUTO_INCREMENT,
-    `version`       bigint                                 NOT NULL DEFAULT '0' DEFAULT '0',
+    `version`       bigint                                 NOT NULL DEFAULT '0',
     `category`      enum ('TASK1','TASK2','TASK3','OTHER') NOT NULL,
     `creation_date` datetime(6)                            NOT NULL,
-    `description`   varchar(255)                                    DEFAULT NULL,
+    `description`   varchar(255) DEFAULT NULL,
     `price`         decimal(38, 2)                         NOT NULL,
-    `title`         varchar(255)                                    DEFAULT NULL,
+    `title`         varchar(255) DEFAULT NULL,
     `user_id`       bigint                                 NOT NULL,
     PRIMARY KEY (`id`),
     KEY `FK2hsytmxysatfvt0p1992cw449` (`user_id`),
@@ -39,6 +33,11 @@ CREATE TABLE `task`
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `task`
+--
+
 
 --
 -- Table structure for table `task_contact_info`
@@ -51,13 +50,13 @@ CREATE TABLE `task_contact_info`
 (
     `id`                  bigint NOT NULL AUTO_INCREMENT,
     `version`             bigint NOT NULL DEFAULT '0',
-    `city`                varchar(255)    DEFAULT NULL,
-    `house_number`        varchar(255)    DEFAULT NULL,
-    `house_number_suffix` varchar(255)    DEFAULT NULL,
-    `postal_code`         varchar(255)    DEFAULT NULL,
-    `street`              varchar(255)    DEFAULT NULL,
-    `email`               varchar(255)    DEFAULT NULL,
-    `phone`               varchar(255)    DEFAULT NULL,
+    `city`                varchar(255) DEFAULT NULL,
+    `house_number`        varchar(255) DEFAULT NULL,
+    `house_number_suffix` varchar(255) DEFAULT NULL,
+    `postal_code`         varchar(255) DEFAULT NULL,
+    `street`              varchar(255) DEFAULT NULL,
+    `email`               varchar(255) DEFAULT NULL,
+    `phone`               varchar(255) DEFAULT NULL,
     `task_id`             bigint NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `UK_hugho2mc2g01stgmx6w91qbxg` (`task_id`),
@@ -67,6 +66,11 @@ CREATE TABLE `task_contact_info`
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `task_contact_info`
+--
+
 
 --
 -- Table structure for table `user`
@@ -80,18 +84,23 @@ CREATE TABLE `user`
     `id`              bigint      NOT NULL AUTO_INCREMENT,
     `version`         bigint      NOT NULL DEFAULT '0',
     `creation_date`   datetime(6) NOT NULL,
-    `email`           varchar(255)         DEFAULT NULL,
-    `first_name`      varchar(255)         DEFAULT NULL,
-    `last_name`       varchar(255)         DEFAULT NULL,
-    `last_name_affix` varchar(255)         DEFAULT NULL,
-    `password`        varchar(255)         DEFAULT NULL,
-    `phone`           varchar(255)         DEFAULT NULL,
+    `email`           varchar(255) DEFAULT NULL,
+    `first_name`      varchar(255) DEFAULT NULL,
+    `last_name`       varchar(255) DEFAULT NULL,
+    `last_name_affix` varchar(255) DEFAULT NULL,
+    `password`        varchar(255) DEFAULT NULL,
+    `phone`           varchar(255) DEFAULT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
 
 --
 -- Table structure for table `user_address`
@@ -104,11 +113,11 @@ CREATE TABLE `user_address`
 (
     `id`                  bigint NOT NULL AUTO_INCREMENT,
     `version`             bigint NOT NULL DEFAULT '0',
-    `city`                varchar(255)    DEFAULT NULL,
-    `house_number`        varchar(255)    DEFAULT NULL,
-    `house_number_suffix` varchar(255)    DEFAULT NULL,
-    `postal_code`         varchar(255)    DEFAULT NULL,
-    `street`              varchar(255)    DEFAULT NULL,
+    `city`                varchar(255) DEFAULT NULL,
+    `house_number`        varchar(255) DEFAULT NULL,
+    `house_number_suffix` varchar(255) DEFAULT NULL,
+    `postal_code`         varchar(255) DEFAULT NULL,
+    `street`              varchar(255) DEFAULT NULL,
     `user_id`             bigint NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `UK_kfu0161nvirkey6fwd6orucv7` (`user_id`),
@@ -117,6 +126,10 @@ CREATE TABLE `user_address`
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_address`
+--
 
 /*!40103 SET TIME_ZONE = @OLD_TIME_ZONE */;
 
@@ -128,4 +141,4 @@ CREATE TABLE `user_address`
 /*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES = @OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-10 13:15:35
+-- Dump completed on 2024-05-10 15:59:45

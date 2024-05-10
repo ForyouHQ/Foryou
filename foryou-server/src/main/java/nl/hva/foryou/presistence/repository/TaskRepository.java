@@ -1,7 +1,7 @@
 package nl.hva.foryou.presistence.repository;
 
-import nl.hva.foryou.presistence.domain.Task;
-import nl.hva.foryou.presistence.domain.TaskSummary;
+import nl.hva.foryou.presistence.domain.task.Task;
+import nl.hva.foryou.presistence.domain.task.TaskSummary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
