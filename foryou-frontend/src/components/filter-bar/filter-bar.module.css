@@ -1,6 +1,6 @@
 .container {
     width: 17.125rem;
-    height: 50rem;
+    height: 49rem;
     background-color: #01A9B4;
     border-top-left-radius: 1.25rem;
     border-bottom-left-radius: 1.25rem;
@@ -8,7 +8,6 @@
     padding: 1.25rem;
     margin-left: 1rem;
     display: flex;
-    position: fixed;
 }
 
 .logo {

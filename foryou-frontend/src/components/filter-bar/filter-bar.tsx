@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import css from './filter-bar.module.css';
 import filterLogo from "../../assets/logos/filter_logo.png";
 import evenement from "../../assets/filter-images/evenement.png";
