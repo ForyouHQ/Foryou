@@ -2,13 +2,18 @@ package nl.hva.foryou.api.controller;
 
 import jakarta.validation.Valid;
 import nl.hva.foryou.api.converter.TaskConverter;
+import nl.hva.foryou.api.converter.TaskDetailsConverter;
 import nl.hva.foryou.api.converter.TaskSummaryConverter;
+import nl.hva.foryou.api.converter.UserAddressConverter;
+import nl.hva.foryou.api.model.TaskDetailsModel;
 import nl.hva.foryou.api.model.TaskModel;
 import nl.hva.foryou.api.model.TaskSummaryModel;
+import nl.hva.foryou.exception.TaskNotFoundException;
 import nl.hva.foryou.exception.UserNotFoundException;
 import nl.hva.foryou.presistence.domain.Task;
 import nl.hva.foryou.presistence.domain.TaskSummary;
 import nl.hva.foryou.presistence.domain.User;
+import nl.hva.foryou.presistence.domain.UserAddress;
 import nl.hva.foryou.service.task.TaskService;
 import nl.hva.foryou.service.UserService;
 import nl.hva.foryou.service.task.TasksQuery;
@@ -27,7 +32,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/tasks", produces = MediaTypes.HAL_JSON_VALUE)
-@CrossOrigin(origins = {"https://foryou-server-test.onrender.com", "https://foryou-frontend-test.onrender.com"})
+@CrossOrigin(origins = "*")
 public class TaskController {
 
     private final TaskService taskService;
@@ -37,6 +42,10 @@ public class TaskController {
     private final TaskConverter taskConverter = new TaskConverter();
 
     private final TaskSummaryConverter taskSummaryConverter = new TaskSummaryConverter();
+
+    private final TaskDetailsConverter taskDetailsConverter = new TaskDetailsConverter();
+
+    private final UserAddressConverter userAddressConverter = new UserAddressConverter();
 
 
     public TaskController(TaskService taskService, UserService userService) {
@@ -76,5 +85,18 @@ public class TaskController {
         Page<Task> tasks = taskService.filterTasks(query, pageable);
         Page<TaskSummaryModel> taskSummaryModels = taskConverter.toTaskSummaryModels(tasks);
         return ResponseEntity.ok(assembler.toModel(taskSummaryModels));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getTask(@PathVariable Long id) {
+        Task task = taskService.getTaskById(id);
+        User user = task.getUser();
+        if (user == null) {
+            throw new UserNotFoundException("User not found for task with id: " + id);
+        }
+        UserAddress userAddress = userService.findUserAddressByUserId(user.getId());
+        TaskDetailsModel taskDetailsModel = taskDetailsConverter.toModel(task);
+        taskDetailsModel.setAddress(userAddressConverter.toModel(userAddress));
+        return ResponseEntity.ok().body(taskDetailsModel);
     }
 }
