@@ -38,7 +38,7 @@ interface DashboardServicesProps {
 export const DashboardServices: React.FC<DashboardServicesProps> = ({currentPage, totalPages, setCurrentPage, filteredCategory, setTotalPages}) => {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [title, setTitle] = useState<string>("");
-    
+
     useEffect(() => {
         if (!filteredCategory && !title) {
             getAllTasks();
