@@ -1,17 +1,17 @@
 package nl.hva.foryou.service.task;
 
 import jakarta.transaction.Transactional;
-import nl.hva.foryou.api.model.TaskSummaryModel;
 import nl.hva.foryou.exception.TaskNotFoundException;
-import nl.hva.foryou.presistence.domain.Task;
-import nl.hva.foryou.presistence.domain.TaskCategory;
-import nl.hva.foryou.presistence.domain.TaskSummary;
+import nl.hva.foryou.presistence.domain.task.Task;
+import nl.hva.foryou.presistence.domain.task.TaskCategory;
+import nl.hva.foryou.presistence.domain.task.TaskSummary;
 import nl.hva.foryou.presistence.repository.TaskRepository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,6 +26,7 @@ public class TaskService {
 
     @Transactional
     public Task createTask(Task task) {
+        task.setCreationDate(ZonedDateTime.now());
         return taskRepository.save(task);
     }
 
@@ -39,7 +40,6 @@ public class TaskService {
 
     public Page<Task> filterTasks(TasksQuery query, Pageable pageable) {
         return taskRepository.findAll(TaskSpecifications.querySpecification(query), pageable);
-
     }
 
     public Task getTaskById(Long id) {
