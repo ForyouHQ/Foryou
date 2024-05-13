@@ -21,6 +21,7 @@ export const LoginCard: React.FC = () => {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({email, password}),
+                mode: 'cors',
             });
             
             console.log(response);
