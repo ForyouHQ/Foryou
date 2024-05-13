@@ -30,7 +30,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/tasks", produces = MediaTypes.HAL_JSON_VALUE)
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class TaskController {
 
     private final TaskService taskService;
