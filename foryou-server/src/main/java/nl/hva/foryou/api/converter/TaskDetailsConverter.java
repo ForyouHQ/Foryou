@@ -22,6 +22,7 @@ public class TaskDetailsConverter extends RepresentationModelAssemblerSupport<Ta
         model.setEmail(entity.getUser().getEmail());
         model.setPhone(entity.getUser().getPhone());
         model.setCreationDate(entity.getCreationDate());
+        model.setFirstName(entity.getUser().getFirstName());
         return model;
     }
 

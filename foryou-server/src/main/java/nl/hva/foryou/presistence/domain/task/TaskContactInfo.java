@@ -11,7 +11,6 @@ public class TaskContactInfo extends BaseJpaEntity {
     @OneToOne(optional = false, fetch = FetchType.LAZY)
     private Task task;
 
-    @Column(unique = true)
     @Email
     private String email;
 

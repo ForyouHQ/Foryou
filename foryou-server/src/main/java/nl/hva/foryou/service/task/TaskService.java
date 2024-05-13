@@ -4,7 +4,9 @@ import jakarta.transaction.Transactional;
 import nl.hva.foryou.exception.TaskNotFoundException;
 import nl.hva.foryou.presistence.domain.task.Task;
 import nl.hva.foryou.presistence.domain.task.TaskCategory;
+import nl.hva.foryou.presistence.domain.task.TaskContactInfo;
 import nl.hva.foryou.presistence.domain.task.TaskSummary;
+import nl.hva.foryou.presistence.repository.TaskContactInfoRepository;
 import nl.hva.foryou.presistence.repository.TaskRepository;
 
 import org.springframework.data.domain.Page;
@@ -20,8 +22,11 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
 
-    public TaskService(TaskRepository taskRepository) {
+    private final TaskContactInfoRepository taskContactInfoRepository;
+
+    public TaskService(TaskRepository taskRepository, TaskContactInfoRepository taskContactInfoRepository) {
         this.taskRepository = taskRepository;
+        this.taskContactInfoRepository = taskContactInfoRepository;
     }
 
     @Transactional
@@ -44,6 +49,10 @@ public class TaskService {
 
     public Task getTaskById(Long id) {
         return taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException(id));
+    }
+
+    public TaskContactInfo getTaskContactInfoByTaskId(Long id) {
+        return taskContactInfoRepository.findTaskContactInfoByTaskId(id).orElseThrow(() -> new TaskNotFoundException(id));
     }
 
 }

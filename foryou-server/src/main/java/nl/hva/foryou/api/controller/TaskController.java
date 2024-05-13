@@ -98,9 +98,9 @@ public class TaskController {
         if (user == null) {
             throw new UserNotFoundException("User not found for task with id: " + id);
         }
-        UserAddress userAddress = userService.findUserAddressByUserId(user.getId());
+        TaskContactInfo contactInfo = taskService.getTaskContactInfoByTaskId(id);
         TaskDetailsModel taskDetailsModel = taskDetailsConverter.toModel(task);
-        taskDetailsModel.setAddress(userAddress.getAddressInfo());
+        taskDetailsModel.setAddress(contactInfo.getAddressInfo());
         return ResponseEntity.ok().body(taskDetailsModel);
     }
 
