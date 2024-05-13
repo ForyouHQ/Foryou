@@ -9,10 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import java.util.List;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
@@ -24,16 +20,7 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors(cors -> {
-                    CorsConfigurationSource source = request -> {
-                        CorsConfiguration config = new CorsConfiguration();
-                        config.setAllowedOrigins(List.of("https://foryou-frontend-test.onrender.com"));
-                        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
-                        // Add other CORS configuration as needed
-                        return config;
-                    };
-                    cors.configurationSource(source);
-                })
+        http.cors(withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         .anyRequest().authenticated())
