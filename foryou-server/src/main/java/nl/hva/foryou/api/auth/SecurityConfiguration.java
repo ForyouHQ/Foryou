@@ -24,7 +24,16 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors(withDefaults())
+        http.cors(cors -> {
+                    CorsConfigurationSource source = request -> {
+                        CorsConfiguration config = new CorsConfiguration();
+                        config.setAllowedOrigins(List.of("https://foryou-frontend-test.onrender.com"));
+                        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+                        // Add other CORS configuration as needed
+                        return config;
+                    };
+                    cors.configurationSource(source);
+                })
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         .anyRequest().authenticated())
