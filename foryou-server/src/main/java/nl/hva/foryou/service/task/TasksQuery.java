@@ -1,6 +1,6 @@
 package nl.hva.foryou.service.task;
 
-import nl.hva.foryou.presistence.domain.TaskCategory;
+import nl.hva.foryou.presistence.domain.task.TaskCategory;
 
 import java.util.EnumSet;
 import java.util.Optional;

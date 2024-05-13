@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './task-upload-input.module.css';
-import { CardButton } from '../card-button/card-button';
+import {CardButton} from '../card-button/card-button';
 
 interface TaskUploadInputProps {
     showSecondComponent: boolean;
@@ -10,11 +10,15 @@ interface TaskUploadInputProps {
         title: string;
         price: string;
         description: string;
-        phoneNumber: string;
-        street: string;
-        houseNumber: string;
-        postalCode: string;
-        city: string;
+        phone: string;
+        email: string
+        address: {
+            street: string;
+            houseNumber: string;
+            postalCode: string;
+            city: string;
+        };
+        userId: number;
     };
     handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
     onNextButtonClick: () => void;
@@ -90,7 +94,7 @@ export const TaskUploadInput: React.FC<TaskUploadInputProps> = ({
                         onChange={handleInputChange}
                     />
                 </div>
-                <CardButton text={'Next'} inactive={false} onClick={onNextButtonClick} />
+                <CardButton text={'Next'} inactive={false} onClick={onNextButtonClick}/>
             </div>
         );
     };
@@ -99,15 +103,29 @@ export const TaskUploadInput: React.FC<TaskUploadInputProps> = ({
         return (
             <div className={css.container}>
                 <div className={css.labelInputContainer}>
-                    <label htmlFor="phoneNumber" className={css.label}>
+                    <label htmlFor="email" className={css.label}>
+                        Emails Address
+                    </label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="text"
+                        className={css.regularInput}
+                        value={formData.email}
+                        onChange={handleInputChange}
+                    />
+                </div>
+
+                <div className={css.labelInputContainer}>
+                    <label htmlFor="phone" className={css.label}>
                         Phone Number
                     </label>
                     <input
-                        id="phoneNumber"
-                        name="phoneNumber"
+                        id="phone"
+                        name="phone"
                         type="text"
                         className={css.regularInput}
-                        value={formData.phoneNumber}
+                        value={formData.phone}
                         onChange={handleInputChange}
                     />
                 </div>
@@ -122,7 +140,7 @@ export const TaskUploadInput: React.FC<TaskUploadInputProps> = ({
                             name="street"
                             type="text"
                             className={css.nameInput}
-                            value={formData.street}
+                            value={formData.address.street}
                             onChange={handleInputChange}
                         />
                     </div>
@@ -136,7 +154,7 @@ export const TaskUploadInput: React.FC<TaskUploadInputProps> = ({
                             name="houseNumber"
                             type="text"
                             className={css.nameInput}
-                            value={formData.houseNumber}
+                            value={formData.address.houseNumber}
                             onChange={handleInputChange}
                         />
                     </div>
@@ -144,15 +162,15 @@ export const TaskUploadInput: React.FC<TaskUploadInputProps> = ({
 
                 <div className={css.nameContainers}>
                     <div className={css.labelInputContainer}>
-                        <label htmlFor="postcode" className={css.label}>
+                        <label htmlFor="postalCode" className={css.label}>
                             Postcode
                         </label>
                         <input
-                            id="postcode"
-                            name="postcode"
+                            id="postalCode"
+                            name="postalCode"
                             type="text"
                             className={css.nameInput}
-                            value={formData.postalCode}
+                            value={formData.address.postalCode}
                             onChange={handleInputChange}
                         />
                     </div>
@@ -166,18 +184,19 @@ export const TaskUploadInput: React.FC<TaskUploadInputProps> = ({
                             name="city"
                             type="text"
                             className={css.nameInput}
-                            value={formData.city}
+                            value={formData.address.city}
                             onChange={handleInputChange}
                         />
                     </div>
                 </div>
 
-                <CardButton text={'Create Service'} inactive={false} onClick={onCreateTask} />
+                <CardButton text={'Create Service'} inactive={false} onClick={onCreateTask}/>
             </div>
         );
     };
 
     return (
-        <div className={css.container}>{showSecondComponent ? secondTaskUploadComponent() : firstTaskUploadComponent()}</div>
+        <div
+            className={css.container}>{showSecondComponent ? secondTaskUploadComponent() : firstTaskUploadComponent()}</div>
     );
 };

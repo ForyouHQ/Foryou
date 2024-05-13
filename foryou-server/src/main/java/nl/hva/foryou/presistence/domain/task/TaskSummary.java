@@ -1,4 +1,4 @@
-package nl.hva.foryou.presistence.domain;
+package nl.hva.foryou.presistence.domain.task;
 
 import java.math.BigDecimal;
 

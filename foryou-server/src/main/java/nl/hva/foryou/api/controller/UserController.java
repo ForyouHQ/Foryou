@@ -41,7 +41,8 @@ public class UserController {
     @PostMapping("/register")
     public AuthenticationResponse createAccount(@RequestBody UserModel userModel) {
         User user = userConverter.toEntity(userModel);
-        if (userService.findUserByEmail(userModel.getEmail()) != null) throw new EmailAlreadyExistsException("Email address already exists");
+        if (userService.findUserByEmail(userModel.getEmail()) != null)
+            throw new EmailAlreadyExistsException("Email address already exists");
         if (!userService.isValidEmail(userModel.getEmail())) throw new InvalidEmailException("Invalid email address");
         user = userService.saveUser(user);
         String jwtToken = jwtService.generateToken(user);
@@ -55,7 +56,8 @@ public class UserController {
     public ResponseEntity<UserAddressModel> createAddress(@RequestBody UserAddressModel userAddressModel) {
         UserAddress userAddress = userAddressConverter.toEntity(userAddressModel);
         User user = userService.findUserById(userAddressModel.getUserId());
-        if (userService.findUserAddressByUserId(user.getId()) != null) throw new DuplicateAddressException("User address already exists");
+        if (userService.findUserAddressByUserId(user.getId()) != null)
+            throw new DuplicateAddressException("User address already exists");
         userAddress.setUser(user);
         UserAddress createdAddress = userService.saveUserAddress(userAddress);
         return ResponseEntity.status(HttpStatus.CREATED).body(userAddressConverter.toModel(createdAddress));
@@ -68,29 +70,29 @@ public class UserController {
             User user = userService.findUserByEmail(userSignInModel.getEmail());
             String jwtToken = jwtService.generateToken(user);
             return ResponseEntity.ok(AuthenticationResponse.builder()
-                            .token(jwtToken)
-                            .userId(user.getId())
-                            .build());
+                    .token(jwtToken)
+                    .userId(user.getId())
+                    .build());
         } catch (AuthenticationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
         }
     }
 
     @GetMapping(path = "/contactInfo/{userId}")
-    public ResponseEntity<ContactInfoModel> getUserContactInfo(@PathVariable Long userId) {
-        UserAddress userAddress = userService.findUserAddressByUserId(userId);
-        if (userAddress == null) {
-            throw new UserNotFoundException(userId);
-        }
+    public ResponseEntity<UserContactInfoModel> getUserContactInfo(@PathVariable Long userId) {
         User user = userService.findUserById(userId);
         if (user == null) {
             throw new UserNotFoundException(userId);
         }
-        ContactInfoModel contactInfoModel = new ContactInfoModel();
-        contactInfoModel.setAddress(userAddressConverter.toModel(userAddress));
-        contactInfoModel.setPhone(user.getPhone());
-        contactInfoModel.setEmail(user.getEmail());
-
-        return ResponseEntity.ok(contactInfoModel);
+        UserAddress userAddress = userService.findUserAddressByUserId(userId);
+        if (userAddress == null) {
+            throw new UserNotFoundException(userId);
+        }
+        UserContactInfoModel userContactInfoModel = new UserContactInfoModel();
+        userContactInfoModel.setPhone(user.getPhone());
+        userContactInfoModel.setEmail(user.getEmail());
+        userContactInfoModel.setAddress(userAddress.getAddressInfo());
+        return ResponseEntity.ok(userContactInfoModel);
     }
+
 }

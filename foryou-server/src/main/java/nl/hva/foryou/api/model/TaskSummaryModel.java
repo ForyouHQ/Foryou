@@ -1,6 +1,6 @@
 package nl.hva.foryou.api.model;
 
-import nl.hva.foryou.presistence.domain.TaskCategory;
+import nl.hva.foryou.presistence.domain.task.TaskCategory;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
