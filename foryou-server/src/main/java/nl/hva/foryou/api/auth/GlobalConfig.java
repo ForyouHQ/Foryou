@@ -10,8 +10,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class GlobalConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry corsRegistry) {
-        corsRegistry.addMapping("/api/**") // Adjust the mapping pattern to match your API endpoints
-                .allowedOrigins("https://foryou-frontend-test.onrender.com") // Add the origins allowed to access your API
+        corsRegistry.addMapping("/**") // Adjust the mapping pattern to match your API endpoints
+                .allowedOrigins("*") // Add the origins allowed to access your API
                 .allowedMethods("GET", "POST", "PUT", "DELETE") // Add the HTTP methods allowed
                 .allowedHeaders("*"); // Add the headers allowed in the request
     }
