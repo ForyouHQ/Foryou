@@ -29,6 +29,8 @@ public class TaskDetailsModel extends RepresentationModel<TaskDetailsModel> {
 
     private String phone;
 
+    private String firstName;
+
     public Long getUserId() {
         return userId;
     }
@@ -99,5 +101,13 @@ public class TaskDetailsModel extends RepresentationModel<TaskDetailsModel> {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 }
