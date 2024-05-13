@@ -3,6 +3,7 @@ import css from './dashboard-services.module.css';
 import stockImage from "../../assets/stock/dog_stock_image.png";
 import {ServiceButton} from "../service-button/service-button";
 import magnifyingGlass from "../../assets/functional-images/magnifying-glass.png";
+import {SPECIFIC_TASK} from "../../constants/routes";
 
 interface Task {
     id: number;
@@ -134,7 +135,7 @@ export const DashboardServices: React.FC<DashboardServicesProps> = ({currentPage
                                 <span className={css.price}>€{task.price.toFixed(2)}</span>
                             </div>
                             <p className={css.title}>{task.title}</p>
-                            <ServiceButton text={"Bekijk advertentie"} inactive={false}/>
+                            <ServiceButton text={"Bekijk advertentie"} inactive={false} to={`${SPECIFIC_TASK}/${task.id}`}/>
                         </div>
                     </div>
                 ))}

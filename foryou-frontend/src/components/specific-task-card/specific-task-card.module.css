@@ -1,0 +1,214 @@
+@import "../../constants/colors.module.css";
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 10px;
+    min-width: 300px;
+    width: calc(100% - 20px);
+}
+
+.card:first-child {
+    min-width: 800px;
+}
+
+.card:first-child .content {
+    padding-right: 20%;
+}
+
+.card:not(:first-child) {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.image {
+    width: 350px;
+    height: 250px;
+    object-fit: contain;
+    border-radius: 5%;
+    padding-right: 0.625rem;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px;
+}
+
+.title {
+    margin-top: 0;
+    font-size: 2.5rem;
+}
+
+.label {
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding-top: 20px;
+    font-size: 30px;
+}
+
+.description {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.separator {
+    margin-top: 25px;
+    min-width: 110%;
+    border-top: 1px solid #282c34;
+}
+
+.name {
+    font-weight: bold;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    color: var(--ButtonColor);
+    font-size: 1.3rem;
+}
+
+.category,
+.price,
+.location {
+    margin: 10px 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.price {
+    font-size: 1.5rem;
+    margin-top: 50px;
+}
+
+.btn {
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 0.063rem solid black;
+    box-shadow: 0 0 0 0 black;
+    width: 5.313rem;
+    height: 2.188rem;
+}
+
+.btn:hover {
+    transform: translateY(-0.25rem) translateX(-0.125rem);
+    box-shadow: 0.125rem 0.313rem 0 0 black;
+}
+
+.btn:active {
+    transform: translateY(0.125rem) translateX(0.063rem);
+    box-shadow: 0 0 0 0 black;
+}
+
+.btnReact {
+    color: var(--NavBarBackgroundColor);
+    background-color: var(--ButtonColor);
+    border-color: var(--ButtonColor);
+    width: 200px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    padding: 10px;
+}
+
+.svgImage {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    width: 55px;
+    height: auto;
+    z-index: 1;
+}
+
+.iconImage {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--ButtonColor);
+}
+
+@media (min-width: 768px) {
+    .card {
+        width: calc(50% - 20px);
+    }
+
+    .image {
+        height: auto;
+        width: 110%;
+        object-fit: contain;
+        border-radius: 5%;
+        padding-right: 0.625rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .card {
+        min-width: 300px;
+    }
+
+    .card:first-child {
+        min-width: 300px;
+    }
+
+    .card:first-child .content {
+        padding-right: 10%;
+    }
+
+    .card:not(:first-child) {
+        max-width: 500px;
+        max-height: 500px;
+    }
+
+    .separator {
+        min-width: 100%;
+    }
+
+    .svgImage {
+        top: 15px;
+        width: 45px;
+    }
+
+    .price {
+        margin-bottom: 50px;
+    }
+
+    .image {
+        height: auto;
+        width: 100%;
+        object-fit: contain;
+        border-radius: 5%;
+        padding-right: 0.625rem;
+    }
+}
