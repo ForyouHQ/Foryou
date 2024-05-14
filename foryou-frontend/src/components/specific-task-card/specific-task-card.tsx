@@ -80,7 +80,7 @@ export const SpecificTaskCard = () => {
                                 alt="Icon SVG"
                                 className={css.iconImage}
                             />
-                            {taskData?.name || "Anoniem"}
+                            {taskData?.firstName || "Anoniem"}
                         </p>
                         <p className={css.category}>Categorie: {taskData?.category || "Onbekend"}</p>
                         <p className={css.location}>Locatie: {taskData?.address.city || "Onbekend"}</p>
